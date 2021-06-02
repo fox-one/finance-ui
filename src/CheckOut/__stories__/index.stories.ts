@@ -21,5 +21,5 @@ storiesOf('CheckOut', module)
     components: {
       CheckOut
     },
-    template: `<CheckOut>{{'Hello CheckOut'}}</CheckOut>`
+    template: `<CheckOut title="test title" :show="true">{{'Hello CheckOut'}}</CheckOut>`
   }));

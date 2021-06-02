@@ -1,15 +1,17 @@
-import Vue from 'vue';
-import Vuetify from "vuetify/lib";
-import Uikit from "@foxone/uikit";
 import { addDecorator, configure } from '@storybook/vue';
 import { withOptions } from '@storybook/addon-options';
 import { setConsoleOptions } from '@storybook/addon-console';
 import { addReadme } from 'storybook-readme/vue';
+import useVuetify from "./vuetify";
 
-Vue.use(Vuetify);
-Vue.use(Uikit);
+
 
 addDecorator(addReadme);
+addDecorator(() => ({
+  vuetify: useVuetify(),
+  template: '<v-app><v-main><v-container><story/></v-container></v-main></v-app>',
+}));
+
 setConsoleOptions({
   panelExclude: []
 });
