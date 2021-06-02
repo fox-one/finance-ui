@@ -21,5 +21,19 @@ storiesOf('CheckOut', module)
     components: {
       CheckOut
     },
-    template: `<CheckOut title="test title" :show="true">{{'Hello CheckOut'}}</CheckOut>`
+    data() {
+      return {
+        isShow: false
+      }
+    },
+    methods: {
+      handleClick() {
+        const self = this as any;
+        self.isShow = !self.isShow;
+      }
+    },
+    template: `<div>
+        <v-btn @click="handleClick">点我入群</v-btn>
+        <CheckOut title="支付入群费" subtitle="超级便宜" :show="isShow">{{'Hello CheckOut'}}</CheckOut>
+      </div>`
   }));

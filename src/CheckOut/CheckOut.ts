@@ -1,7 +1,8 @@
 import {
   Component,
   Vue,
-  Prop
+  Prop,
+  PropSync
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
 import Bridge from '@foxone/mixin-sdk-jsbridge';
@@ -13,8 +14,9 @@ export class CheckOut extends Vue {
   @Prop({ type: String, default: '' }) private title!: string;
   @Prop({ type: String, default: '' }) private subtitle!: string;
   @Prop({ type: String, default: '' }) private client_id!: string;
-  @Prop({ type: Boolean, default: false }) private show!: boolean;
   @Prop({ type: String, default: '' }) private className!: string;
+
+  @PropSync('show') private bindShow!: boolean;
 
   private bridge: undefined | Bridge;
 
@@ -41,7 +43,7 @@ export class CheckOut extends Vue {
           'f-bottom-sheet',
           {
             props: {
-              value: this.show
+              value: this.bindShow
             },
             scopedSlots: {
               title: () => {
@@ -68,8 +70,7 @@ export class CheckOut extends Vue {
                 'loading'
               )
           ]
-        ),
-        h('v-btn', 'test msg')
+        )
       ]
     );
   }
