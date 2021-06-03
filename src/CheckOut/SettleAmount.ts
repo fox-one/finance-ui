@@ -2,6 +2,7 @@ import {
   Component,
   Vue,
   Prop,
+  PropSync,
   Model
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
@@ -9,21 +10,11 @@ import Bridge from '@foxone/mixin-sdk-jsbridge';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
-export interface Channel {
-  channel: 'mixin' | 'wechat' | 'alipay';
-  asset_id: string;
-}
-
 @Component
-export class CheckOut extends Vue {
-  // Data relative
-  @Prop({ type: () => Array, default: [] }) private channels!: Channel[];
-  @Prop({ type: Number, default: 0 }) private amount!: number;
-  @Prop({ type: String, default: '' }) private client_id!: string;
-
-  // UI relative
+export class SettleAmount extends Vue {
   @Prop({ type: String, default: '' }) private title!: string;
   @Prop({ type: String, default: '' }) private subtitle!: string;
+  @Prop({ type: String, default: '' }) private client_id!: string;
   @Prop({ type: String, default: '' }) private className!: string;
 
   @Model('change', { type: Boolean, default: false }) private show!: boolean;
@@ -31,8 +22,6 @@ export class CheckOut extends Vue {
   private bridge: undefined | Bridge;
 
   private loading = false;
-
-  private payway: Channel = {} as Channel;
 
   public created() {
     if (this.client_id) {
@@ -100,4 +89,4 @@ export class CheckOut extends Vue {
   }
 }
 
-export default CheckOut;
+export default SettleAmount;

@@ -30,10 +30,20 @@ storiesOf('CheckOut', module)
       handleClick() {
         const self = this as any;
         self.isShow = !self.isShow;
+      },
+      handleChange(val) {
+        console.log('onchange value: ', val);
       }
     },
     template: `<div>
-        <v-btn @click="handleClick">点我入群</v-btn>
-        <CheckOut title="支付入群费" subtitle="超级便宜" :show="isShow">{{'Hello CheckOut'}}</CheckOut>
+        <v-btn @click="handleClick" color="primary">点我入群</v-btn>
+        <CheckOut
+          v-model="isShow"
+          title="支付入群费"
+          subtitle="超级便宜，只要1999.99个BTC"
+          @change="handleChange"
+        >
+          {{'Hello CheckOut'}}
+        </CheckOut>
       </div>`
   }));
