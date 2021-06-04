@@ -1,9 +1,9 @@
 import { shallowMount, mount } from '@vue/test-utils';
-import WarnToast from '../';
+import RistInfo from '../';
 
-describe('WarnToast', () => {
+describe('RistInfo', () => {
   it('renders correctly', () => {
-    const wrapper = shallowMount(WarnToast);
+    const wrapper = shallowMount(RistInfo);
     expect(wrapper).toMatchSnapshot();
   });
 });

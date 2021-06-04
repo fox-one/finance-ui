@@ -8,7 +8,7 @@ import classnames from '@utils/classnames';
 import type { CreateElement, VNode } from 'vue';
 
 @Component
-export class WarnToast extends Vue {
+export class RistInfo extends Vue {
   @Prop({ type: String, default: '' }) private className!: string;
 
   public render(h: CreateElement): VNode {
@@ -17,7 +17,7 @@ export class WarnToast extends Vue {
     return h(
       'div',
       {
-        staticClass: classes('warntoast'),
+        staticClass: classes('ristinfo'),
         class: this.className
       },
       content
@@ -25,4 +25,4 @@ export class WarnToast extends Vue {
   }
 }
 
-export default WarnToast;
+export default RistInfo;

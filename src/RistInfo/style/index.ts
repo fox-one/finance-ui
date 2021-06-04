@@ -1,0 +1,1 @@
+import './RistInfo.scss';

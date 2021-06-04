@@ -15,6 +15,7 @@ export interface Channel {
   channel_icon: string;
   asset_id: string;
   asset_icon: string;
+  [props: string]: any;
 }
 
 @Component({

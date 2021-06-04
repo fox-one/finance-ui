@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import { WarnToast } from '../';
+import { RistInfo } from '../';
 import '../style';
 
-storiesOf('WarnToast', module)
+storiesOf('RistInfo', module)
   .addParameters({
     readme: {
       sidebar: require('../README.md').default,
@@ -19,7 +19,7 @@ storiesOf('WarnToast', module)
   })
   .add('with text', () => ({
     components: {
-      WarnToast
+      RistInfo
     },
-    template: `<WarnToast>{{'Hello WarnToast'}}</WarnToast>`
+    template: `<RistInfo>{{'Hello RistInfo'}}</RistInfo>`
   }));
