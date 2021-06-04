@@ -1,15 +1,26 @@
-import { addDecorator, configure } from '@storybook/vue';
+import {
+  addDecorator,
+  configure
+} from '@storybook/vue';
 import { withOptions } from '@storybook/addon-options';
 import { setConsoleOptions } from '@storybook/addon-console';
 import { addReadme } from 'storybook-readme/vue';
-import useVuetify from "./vuetify";
-
-
+import useVuetify from './vuetify';
 
 addDecorator(addReadme);
 addDecorator(() => ({
   vuetify: useVuetify(),
-  template: '<v-app><v-main><v-container><story/></v-container></v-main></v-app>',
+  created: function () {
+    const locale = navigator.language;
+    const lang = locale.includes('zh')
+      ? 'zh'
+      : locale.includes('ja')
+      ? 'ja'
+      : 'en';
+    this.$vuetify.lang.current = lang;
+  },
+  template:
+    '<v-app><v-main><v-container><story/></v-container></v-main></v-app>'
 }));
 
 setConsoleOptions({

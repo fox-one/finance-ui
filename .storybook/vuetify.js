@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 import Vuetify, {
   VApp,
   VBtn,
@@ -23,14 +23,17 @@ import Vuetify, {
   VSnackbar,
   VSparkline,
   VToolbar,
-  VLayout,
-} from "vuetify/lib";
-import Uikit from "@foxone/uikit";
+  VLayout
+} from 'vuetify/lib';
+import Uikit from '@foxone/uikit';
 
-import zh from "vuetify/es5/locale/zh-Hans";
-import en from "vuetify/es5/locale/en";
-import ja from "vuetify/es5/locale/ja";
-import enUikit from "@foxone/uikit/src/locales/en";
+import zh from 'vuetify/es5/locale/zh-Hans';
+import en from 'vuetify/es5/locale/en';
+import ja from 'vuetify/es5/locale/ja';
+import enFinance from '../src/locales/en';
+import jaFinance from '../src/locales/ja';
+import zhFinance from '../src/locales/zh';
+import enUikit from '@foxone/uikit/src/locales/en';
 import jaUikit from "@foxone/uikit/src/locales/ja";
 import zhUikit from "@foxone/uikit/src/locales/zh-Hans";
 
@@ -146,14 +149,17 @@ export default function () {
         zh: {
           ...zh,
           ...zhUikit,
+          ...zhFinance,
         },
         en: {
           ...en,
           ...enUikit,
+          ...enFinance,
         },
         ja: {
           ...ja,
           ...jaUikit,
+          ...jaFinance,
         },
       },
     },

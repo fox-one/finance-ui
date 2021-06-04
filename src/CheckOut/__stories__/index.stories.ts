@@ -17,7 +17,7 @@ storiesOf('CheckOut', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
+  .add('Simple Example', () => ({
     components: {
       CheckOut
     },
@@ -35,15 +35,25 @@ storiesOf('CheckOut', module)
         console.log('onchange value: ', val);
       }
     },
-    template: `<div>
-        <v-btn @click="handleClick" color="primary">点我入群</v-btn>
-        <CheckOut
-          v-model="isShow"
-          title="支付入群费"
-          subtitle="超级便宜，只要1999.99个BTC"
-          @change="handleChange"
-        >
-          {{'Hello CheckOut'}}
-        </CheckOut>
-      </div>`
+    template: `<section>
+        <p class="mt-10 text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">各种信息介绍……</p>
+        <p class="text-center">大佬快快入群！！！</p>
+        <div style="position: absolute; bottom: 20vh; left: 50%; transform: translate(-50%, 0);">
+          <v-btn @click="handleClick" color="primary">点我入群</v-btn>
+          <CheckOut
+            v-model="isShow"
+            title="支付入群费"
+            subtitle="超级便宜，只要1999.99个BTC"
+            @change="handleChange"
+          >
+            {{'Hello CheckOut'}}
+          </CheckOut>
+        </div>
+      </section>`
   }));
