@@ -23,11 +23,11 @@ export class Coupon extends Vue {
 
   public render(h: CreateElement): VNode {
     const content = this.$slots.default;
-    const classes = classnames({ prefix: 'prefix' });
+    const classes = classnames('coupon');
     return h(
       'div',
       {
-        staticClass: classes('coupon'),
+        staticClass: classes(),
         class: this.className
       },
       content

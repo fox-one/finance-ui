@@ -1,17 +1,19 @@
 import classNames from 'classnames';
 
-export const classnames = ({ prefix, theme }: { prefix?: string; theme?: string }) => (
+export const classnames = (_prefix_: string) => (_prefix?: string) => (
   suffix?: string,
   className?: string
-) =>
-  classNames(
+) => {
+  let prefix = _prefix_;
+  if (_prefix) prefix = _prefix_ + '-' + _prefix;
+
+  return classNames(
     {
       [`${prefix}`]: !!prefix && !suffix,
-      [`${prefix}-${theme}`]: !!prefix && !suffix && !!theme,
-      [`${prefix}-${suffix}`]: !!prefix && !!suffix,
-      [`${prefix}-${theme}-${suffix}`]: !!prefix && !!suffix && !!theme
+      [`${prefix}-${suffix}`]: !!prefix && !!suffix
     },
     className
   );
+};
 
-export default classnames;
+export default classnames('finance-ui');

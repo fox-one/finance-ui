@@ -5,7 +5,7 @@ import {
   Model
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
-import Bridge from '@foxone/mixin-sdk-jsbridge';
+import Amount from './Amount';
 import PayAction from './PayAction';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
@@ -15,11 +15,19 @@ export interface Channel {
   channel_icon: string;
   asset_id: string;
   asset_icon: string;
+  symbol: string;
+  rate: number;
   [props: string]: any;
+}
+
+export interface Fiat {
+  symbol: string;
+  rate: number;
 }
 
 @Component({
   components: {
+    Amount,
     PayAction
   }
 })
@@ -27,7 +35,10 @@ export class CheckOut extends Vue {
   // Data relative
   @Prop({ type: Array, default: () => [] }) private channels!: Channel[];
   @Prop({ type: Number, default: 0 }) private amount!: number;
-  @Prop({ type: String, default: '' }) private client_id!: string;
+  @Prop({ type: Number, default: 0 }) private discount!: number;
+  @Prop({ type: Number, default: 1 }) private quantity!: number;
+  @Prop({ type: Number, default: 2 }) private percision!: number;
+  @Prop({ type: Object, default: () => ({ rate: 1, symbol: '$' }) }) private fiat!: Fiat;
 
   // UI relative
   @Prop({ type: String, default: '' }) private title!: string;
@@ -36,26 +47,17 @@ export class CheckOut extends Vue {
 
   @Model('change', { type: Boolean, default: false }) private show!: boolean;
 
-  private bridge: undefined | Bridge;
 
   private loading = false;
 
-  private payway: Channel = {} as Channel;
-
-  public created() {
-    if (this.client_id) {
-      this.bridge = new Bridge({
-        client_id: this.client_id
-      });
-    }
-  }
+  private paychanel: Channel = {} as Channel;
 
   public render(h: CreateElement): VNode {
-    const classes = classnames({ prefix: 'prefix' });
+    const classes = classnames('checkout');
     return h(
       'div',
       {
-        staticClass: classes('checkout'),
+        staticClass: classes(),
         class: this.className
       },
       [
@@ -95,6 +97,15 @@ export class CheckOut extends Vue {
                     h('h5', { staticClass: 'f-greyscale-3 f-caption subtitle text-center' }, this.subtitle)
                   ]
                 ) : null,
+                h(
+                  'amount',
+                  {
+                    props: {
+                      icon: this.paychanel.asset_icon,
+
+                    }
+                  }
+                ),
                 h(
                   'pay-action',
                   {

@@ -8,16 +8,16 @@ import classnames from '@utils/classnames';
 import type { CreateElement, VNode } from 'vue';
 
 @Component
-export class RistInfo extends Vue {
+export class RiskInfo extends Vue {
   @Prop({ type: String, default: '' }) private className!: string;
 
   public render(h: CreateElement): VNode {
     const content = this.$slots.default;
-    const classes = classnames({ prefix: 'prefix' });
+    const classes = classnames('risk-info');
     return h(
       'div',
       {
-        staticClass: classes('ristinfo'),
+        staticClass: classes(),
         class: this.className
       },
       content
@@ -25,4 +25,4 @@ export class RistInfo extends Vue {
   }
 }
 
-export default RistInfo;
+export default RiskInfo;

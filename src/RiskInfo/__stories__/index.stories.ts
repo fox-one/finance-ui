@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import { RistInfo } from '../';
+import { RiskInfo } from '../';
 import '../style';
 
-storiesOf('RistInfo', module)
+storiesOf('RiskInfo', module)
   .addParameters({
     readme: {
       sidebar: require('../README.md').default,
@@ -19,7 +19,7 @@ storiesOf('RistInfo', module)
   })
   .add('with text', () => ({
     components: {
-      RistInfo
+      RiskInfo
     },
-    template: `<RistInfo>{{'Hello RistInfo'}}</RistInfo>`
+    template: `<RiskInfo>{{'Hello RiskInfo'}}</RiskInfo>`
   }));

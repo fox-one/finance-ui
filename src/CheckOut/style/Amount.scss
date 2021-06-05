@@ -1,0 +1,18 @@
+@import '../../styles/variable.scss';
+
+.#{$prefix}-checkout-amount {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  &-symbol {
+    font-size: 24px;
+  }
+  &-major {
+    font-size: 32px;
+    line-height: initial;
+  }
+  &-original {
+    font-size: 16px;
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+}

@@ -1,4 +1,6 @@
-.prefix-coupon {
+@import '../../styles/variable.scss';
+
+.#{$prefix}-coupon {
   display: block;
   color: green;
 }
