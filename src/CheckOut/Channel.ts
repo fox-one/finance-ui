@@ -3,14 +3,15 @@ import {
   Vue,
   Prop
 } from 'vue-property-decorator';
-import { $t } from '@utils/t';
+import checkIcon from '@assets/images/common/check.svg';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
-import type { Channel } from './CheckOut';
+import type { ChannelType } from './CheckOut';
 
 @Component
-export class ChannelItem extends Vue {
-  @Prop({ type: Object, default: () => ({}) }) private channel!: Channel;
+export class Channel extends Vue {
+  @Prop({ type: Object, default: () => ({}) }) private channel!: ChannelType;
+  @Prop({ type: Boolean, default: false }) private selected!: boolean;
 
   private loading = false;
 
@@ -42,15 +43,34 @@ export class ChannelItem extends Vue {
               'v-img',
               {
                 props: {
-                  // src: 
+                  src: this.channel.channel_icon || this.channel.asset_icon
                 }
               }
             )
           ]
-        )
+        ),
+        h(
+          'v-list-item-content',
+          this.channel.channel_name
+        ),
+        this.selected ? h(
+          'v-list-item-icon',
+          [
+            h(
+              'v-img',
+              {
+                props: {
+                  small: true,
+                  color: 'primary',
+                  src: checkIcon
+                }
+              }
+            )
+          ]
+        ) : null
       ]
     );
   }
 }
 
-export default ChannelItem;
+export default Channel;

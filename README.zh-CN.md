@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+[示例](https://fox-one.github.io/finance-ui/?path=/story/)
+
 ## 快速开始
 ### 安装依赖
 ```shell

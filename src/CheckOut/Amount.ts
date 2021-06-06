@@ -4,17 +4,30 @@ import {
   Prop
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
+import { transfer } from '@utils/checkout';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
-import { Fiat } from './CheckOut';
+import type { ChannelType, Fiat } from './CheckOut';
 
 @Component
 export class Amount extends Vue {
   @Prop({ type: String, default: '' }) private icon!: string;
-  @Prop({ type: Number, default: 0 }) private amount!: number;
-  @Prop({ type: Number, default: 0 }) private discount!: number;
+  @Prop({ type: [Number, String], default: 0 }) private amount!: number | string;
+  @Prop({ type: [Number, String], default: 0 }) private discount!: number | string;
+  @Prop({ type: Number, default: 1 }) private quantity!: number;
   @Prop({ type: String, default: 'CNY' }) private symbol!: string;
-  @Prop({ type: Object, default: () => ({ rate: 1, symbol: '$' }) }) private fiat!: Fiat;
+  @Prop({ type: Object, default: () => ({}) }) private channel!: ChannelType;
+  @Prop({ type: Object, default: () => ({ price_ratio: 1, symbol: '$' }) }) private fiat!: Fiat;
+
+  private get actualAmount () {
+    return transfer(
+      1,
+      this.channel.price_ratio,
+      (+this.amount) - (+this.discount),
+      this.quantity,
+      this.channel.percision ?? 2
+    );
+  }
 
   public render(h: CreateElement): VNode {
     const classes = classnames('checkout-amount');
@@ -27,7 +40,7 @@ export class Amount extends Vue {
         h(
           'v-layout',
           {
-            props: {
+            attrs: {
               'align-center': true,
               'justify-center': true
             }
@@ -59,7 +72,7 @@ export class Amount extends Vue {
                     h(
                       'span',
                       { staticClass: classes('major') },
-                      `${this.amount - this.discount}`
+                      `${this.actualAmount}`
                     ),
                     h(
                       'span',
@@ -87,7 +100,7 @@ export class Amount extends Vue {
                 h(
                   'div',
                   { staticClass: 'text-subtitle-2 text--secondary' },
-                  `≈ ${this.fiat.symbol}${this.amount / this.fiat.rate}`
+                  `≈ ${this.fiat.symbol}${+this.amount / this.fiat.price_ratio}`
                 )
               ]
             )

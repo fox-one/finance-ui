@@ -31,6 +31,9 @@ export class PayAction extends Vue {
   public render(h: CreateElement): VNode {
     return h(
       'div',
+      {
+        staticClass: 'ma-4 mt-8'
+      },
       [
         h(
           'f-button',

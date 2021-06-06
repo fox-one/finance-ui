@@ -6,39 +6,42 @@ import {
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
 import Amount from './Amount';
+import Channel from './Channel';
 import PayAction from './PayAction';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
-export interface Channel {
+export interface ChannelType {
   channel: 'mixin' | 'wechat' | 'alipay';
+  channel_name: string;
   channel_icon: string;
   asset_id: string;
   asset_icon: string;
   symbol: string;
-  rate: number;
+  percision?: number;
+  price_ratio: number;
   [props: string]: any;
 }
 
 export interface Fiat {
   symbol: string;
-  rate: number;
+  price_ratio: number;
 }
 
 @Component({
   components: {
     Amount,
+    Channel,
     PayAction
   }
 })
 export class CheckOut extends Vue {
   // Data relative
-  @Prop({ type: Array, default: () => [] }) private channels!: Channel[];
-  @Prop({ type: Number, default: 0 }) private amount!: number;
-  @Prop({ type: Number, default: 0 }) private discount!: number;
+  @Prop({ type: Array, default: () => [] }) private channels!: ChannelType[];
+  @Prop({ type: [Number, String], default: 0 }) private amount!: number | string;
+  @Prop({ type: [Number, String], default: 0 }) private discount!: number | string;
   @Prop({ type: Number, default: 1 }) private quantity!: number;
-  @Prop({ type: Number, default: 2 }) private percision!: number;
-  @Prop({ type: Object, default: () => ({ rate: 1, symbol: '$' }) }) private fiat!: Fiat;
+  @Prop({ type: Object, default: () => ({ price_ratio: 1, symbol: '$' }) }) private fiat!: Fiat;
 
   // UI relative
   @Prop({ type: String, default: '' }) private title!: string;
@@ -50,7 +53,18 @@ export class CheckOut extends Vue {
 
   private loading = false;
 
-  private paychanel: Channel = {} as Channel;
+  private paychannel: ChannelType = {} as ChannelType;
+
+  private isChannelSelected (channel: ChannelType) {
+    return (
+      this.paychannel?.channel === channel.channel &&
+      this.paychannel.asset_id === channel.asset_id
+    );
+  }
+
+  public created () {
+    this.paychannel = this.channels?.[0];
+  }
 
   public render(h: CreateElement): VNode {
     const classes = classnames('checkout');
@@ -101,17 +115,37 @@ export class CheckOut extends Vue {
                   'amount',
                   {
                     props: {
-                      icon: this.paychanel.asset_icon,
-
+                      amount: this.amount,
+                      discount: this.discount,
+                      quantity: this.quantity,
+                      symbol: this.paychannel.symbol,
+                      icon: this.paychannel.asset_icon || this.paychannel.channel_icon,
+                      channel: this.paychannel,
+                      fiat: this.fiat
                     }
                   }
                 ),
+                this.channels?.map((channel, ind) => h(
+                  'channel',
+                  {
+                    key: ind,
+                    props: {
+                      channel,
+                      selected: this.isChannelSelected(channel)
+                    },
+                    on: {
+                      select: (channel: ChannelType) => {
+                        this.paychannel = channel;
+                      }
+                    }
+                  }
+                )),
                 h(
                   'pay-action',
                   {
                     on: {
                       pay: () => {
-                        console.info(123555);
+                        console.info('pay action!');
                         this.$emit('pay');
                       }
                     }

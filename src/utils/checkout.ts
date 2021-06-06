@@ -26,8 +26,8 @@ export function format({
 }
 
 export function transfer(
-  from: string,
-  to: string,
+  from: number,
+  to: number,
   amount: string | number,
   quantity: string | number,
   mp: number,
