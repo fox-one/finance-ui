@@ -17,9 +17,18 @@ storiesOf('RiskInfo', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
+  .add('basic usage', () => ({
     components: {
       RiskInfo
     },
-    template: `<RiskInfo>{{'Hello RiskInfo'}}</RiskInfo>`
+    template: `<f-panel class="mt-15 text-center">
+      <h3 class="mb-4">开始交易</h3>
+      <p>BTC: 1</p>
+      <p>USDT: 100000</p>
+      <RiskInfo>
+        <template #activator="{ on }">
+          <f-button  v-on="on">Swap</f-button>
+        </template>
+      </RiskInfo>
+    </f-panel>`
   }));
