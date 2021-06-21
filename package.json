@@ -36,7 +36,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@foxone/uikit": "~2.0.59",
     "classnames": "~2.2.6"
   },
   "devDependencies": {
@@ -50,6 +49,7 @@
     "@babel/preset-typescript": "~7.10.0",
     "@commitlint/cli": "8.3.5",
     "@mdi/js": "^5.9.55",
+    "@foxone/uikit": "~2.0.59",
     "@omni-door/cli": "^2.4.6",
     "@storybook/addon-actions": "5.3.21",
     "@storybook/addon-console": "1.2.2",
