@@ -21,11 +21,24 @@ storiesOf('RiskInfo', module)
     components: {
       RiskInfo
     },
+    data: () => ({
+      assetLeft: {
+        symbol: 'BTC',
+        price: '$ 7,323,135,026,28'
+      },
+      assetRight: {
+        symbol: 'pUSD',
+        price: '$ 2,64,935,39'
+      }
+    }),
     template: `<f-panel class="mt-15 text-center">
-      <h3 class="mb-4">开始交易</h3>
+      <h3 class="mb-4">开始交易 {{assetLeft.symbol}}</h3>
       <p>BTC: 1</p>
       <p>USDT: 100000</p>
-      <RiskInfo>
+      <RiskInfo
+        :asset-left="assetLeft"
+        :asset-right="assetRight"
+      >
         <template #activator="{ on }">
           <f-button  v-on="on">Swap</f-button>
         </template>

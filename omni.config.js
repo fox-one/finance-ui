@@ -28,7 +28,7 @@ module.exports = {
     esmDir: path.resolve('es'),
 
     reserve: {
-      assets: [] // 构建结果保留其他资源的路径 (reserve other asset paths)
+      assets: [path.resolve(__dirname, 'src/assets')] // 构建结果保留其他资源的路径 (reserve other asset paths)
     },
 
     preflight: {

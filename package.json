@@ -21,6 +21,7 @@
     "lint:commit": "commitlint -e $HUSKY_GIT_PARAMS",
     "new": "omni new",
     "build": "omni build",
+    "build:quick": "omni build -n",
     "build:demo": "build-storybook -c .storybook -o dist-story",
     "release": "omni release"
   },

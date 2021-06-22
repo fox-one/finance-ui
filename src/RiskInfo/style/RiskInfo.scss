@@ -2,5 +2,14 @@
 
 .#{$prefix}-risk-info {
   display: block;
-  color: green;
+  &-card {
+    border-radius: 8px;
+  }
+  &-title {
+    padding-left: 28px;
+    background-image: url('../../assets/images/common/alert.svg');
+    background-repeat: no-repeat;
+    background-size: 22px 19px;
+    background-position: 0;
+  }
 }
