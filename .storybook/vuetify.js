@@ -72,7 +72,7 @@ Vue.use(Vuetify, {
 Vue.use(Uikit);
 
 export default function () {
-  const isDark = false;
+  const isDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
 
   return new Vuetify({
     icons: {

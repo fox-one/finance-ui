@@ -28,10 +28,10 @@ export interface CUSTOM_TEXT {
 }
 
 export interface ASSET {
-  name?: string;
   symbol: string;
-  amount?: string;
-  price: string;
+  amount: string;
+  name?: string;
+  price?: string;
 }
 
 @Component
@@ -41,11 +41,48 @@ export class RiskInfo extends Vue {
   @Prop({ type: String, default: '?%' }) private impact!: string;
   @Prop({ type: Object, default: () => ({}) }) private assetLeft!: ASSET;
   @Prop({ type: Object, default: () => ({}) }) private assetRight!: ASSET;
-  @Prop({ type: Number, default: 300 }) private countdown!: number;
+  @Prop({ type: Number, default: 0 }) private countdown!: number;
   @Prop({ type: Object, default: () => ({ continue: {}, confirm: {} }) }) private customText!: CUSTOM_TEXT;
 
   private isContinue = false;
   private isShow = false;
+  private timer: null | ReturnType<typeof setTimeout> = null;
+  private count = 0;
+
+  private get hasAssets () {
+    let res = false;
+    try {
+      res = JSON.stringify(this.assetLeft) !== '{}' && JSON.stringify(this.assetRight) !== '{}';
+    } catch (error) {
+      res = false;
+    }
+    return res;
+  }
+
+  private get _countdown () {
+    return this.count;
+  }
+
+  private onCountDown () {
+    if (this.count <= 0) {
+      this.timer = null;
+      return;
+    }
+    this.timer = setTimeout(() => {
+      this.count--;
+      this.onCountDown();
+    }, 1000);
+  }
+
+  public resetTimer () {
+    setTimeout(() => {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.count = this.countdown;
+    }, 300);
+  }
 
   @Watch('value')
   public handleValueChange (val: boolean) {
@@ -54,6 +91,14 @@ export class RiskInfo extends Vue {
 
   public created () {
     this.isShow = this.value;
+    this.count = this.countdown;
+  }
+
+  public beforeDestroy() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 
   public render(h: CreateElement): VNode {
@@ -77,6 +122,7 @@ export class RiskInfo extends Vue {
         },
         on: {
           input: (val: any) => {
+            if (val && this.timer === null) this.onCountDown();
             this.isShow = val;
             this.$emit('change', val);
           },
@@ -92,13 +138,13 @@ export class RiskInfo extends Vue {
             h(
               VCardTitle,
               {
-                staticClass: 'justify-center',
+                staticClass: classes('card-title', 'justify-center'),
               },
               [
                 h(
                   'div',
                   {
-                    staticClass: `${classes('title')} f-greyscale-1 f-title-1`
+                    staticClass: classes('title', 'f-greyscale-1 f-title-1')
                   },
                   [customContinueText.title || $t(this, this.isContinue ? 'risk_info_confirm_title' : 'warning')]
                 )
@@ -106,6 +152,9 @@ export class RiskInfo extends Vue {
             ),
             h(
               VCardText,
+              {
+                staticClass: 'pa-0 px-8'
+              },
               [
                 this.isContinue
                   ? h(
@@ -116,6 +165,9 @@ export class RiskInfo extends Vue {
                     [
                       h(
                         'div',
+                        {
+                          staticClass: 'text-center f-body-1'
+                        },
                         [customConfirmText.content || $t(this, 'risk_info_confirm_content')]
                       )
                     ]
@@ -129,81 +181,93 @@ export class RiskInfo extends Vue {
                       h(
                         'div',
                         {
-                          staticClass: classes('highlight')
+                          staticClass: classes('highlight', 'pa-4')
                         },
                         [
                           h(
                             'h3',
+                            {
+                              staticClass: classes('highlight-text', 'f-title-3')
+                            },
                             customContinueText.highlights?.[0] ?? 'Price impact reached'
                           ),
                           h(
                             'h3',
+                            {
+                              staticClass: classes('highlight-impact')
+                            },
                             this.impact || '%'
                           ),
                           h(
                             'h4',
+                            {
+                              staticClass: classes('highlight-text', 'f-title-3')
+                            },
                             customContinueText.highlights?.[1] ?? 'It may cause a serious result.'
                           )
                         ]
                       ),
-                      h(
+                      this.hasAssets ? h(
                         'div',
                         {
-                          staticClass: classes('assets')
+                          staticClass: classes('assets', 'd-flex justify-space-between mt-6')
                         },
                         [
                           h(
                             'div',
                             {
-                              staticClass: classes('assets-left')
+                              staticClass: classes('assets-left', 'd-inline-flex flex-column justify-left')
                             },
                             [
                               h(
                                 'span',
                                 {
-                                  staticClass: classes('assets-left-symbol')
+                                  staticClass: classes('assets-left-symbol', 'f-greyscale-1 f-body-2')
                                 },
                                 [this.assetLeft.symbol]
                               ),
                               h(
                                 'span',
                                 {
-                                  staticClass: classes('assets-left-price')
+                                  staticClass: classes('assets-left-amount', 'f-greyscale-3 f-caption text-truncate')
                                 },
-                                [this.assetLeft.price]
+                                [this.assetLeft.amount]
                               )
                             ]
                           ),
                           h(
                             'div',
                             {
-                              staticClass: classes('assets-right')
+                              staticClass: classes('assets-right', 'd-inline-flex flex-column justify-center')
                             },
                             [
                               h(
                                 'span',
                                 {
-                                  staticClass: classes('assets-right-symbol')
+                                  staticClass: classes('assets-right-symbol', 'f-greyscale-1 f-body-2')
                                 },
                                 [this.assetRight.symbol]
                               ),
                               h(
                                 'span',
                                 {
-                                  staticClass: classes('assets-right-price')
+                                  staticClass: classes('assets-right-amount', 'f-greyscale-3 f-caption text-truncate')
                                 },
-                                [this.assetRight.price]
+                                [this.assetRight.amount]
                               )
                             ]
                           )
                         ]
-                      )
+                      ) : null
                     ]
                   )
               ]
             ),
             h(
               VCardActions,
+              {
+                staticClass: 'mt-6 pa-0 align-center justify-center'
+              },
               [
                 this.isContinue
                   ? h(
@@ -215,51 +279,53 @@ export class RiskInfo extends Vue {
                       h(
                         FButton,
                         {
+                          staticClass: classes('action-confirm-btn-cancel', 'pt-6 pb-8'),
                           props: {
                             type: 'text',
                             color: 'f-greyscale-6'
                           },
                           on: {
                             click: () => {
-                              this.isContinue = false;
                               this.isShow = false;
                               this.$emit('change', false);
-                              this.$emit('cancel');
+                              this.$emit('cancel:confirm');
+                              setTimeout(() => (this.isContinue = false), 500);
                             }
                           }
                         },
-                        this.customText?.confirm?.btn_cancel || $t(this, 'cancel')
+                        customConfirmText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
                         FButton,
                         {
+                          staticClass: classes('action-confirm-btn-confirm', 'pt-6 pb-8'),
                           props: {
                             type: 'text',
                             color: 'error'
                           },
                           on: {
                             click: () => {
-                              this.isContinue = false;
                               this.isShow = false;
                               this.$emit('change', false);
                               this.$emit('confirm');
+                              setTimeout(() => (this.isContinue = false), 500);
                             }
                           }
                         },
-                        this.customText?.confirm?.btn_confirm || $t(this, 'confirm')
+                        customConfirmText?.btn_confirm || $t(this, 'confirm')
                       )
                     ]
                   )
                   : h(
                     'div',
                     {
-                      staticClass: 'd-flex flex-column align-center'
+                      staticClass: 'd-flex flex-column align-center justify-center'
                     },
                     [
                       h(
                         FButton,
                         {
-                          staticClass: 'f-greyscale-6',
+                          staticClass: classes('action-continue-btn-cancel', 'f-greyscale-6'),
                           props: {
                             color: 'pink'
                           },
@@ -267,15 +333,19 @@ export class RiskInfo extends Vue {
                             click: () => {
                               this.isShow = false;
                               this.$emit('change', false);
-                              this.$emit('cancel');
+                              this.$emit('cancel:continue');
                             }
                           }
                         },
-                        this.customText?.continue?.btn_cancel || $t(this, 'cancel')
+                        customContinueText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
                         FButton,
                         {
+                          staticClass: classes('action-continue-btn-continue', 'py-8'),
+                          attrs: {
+                            disabled: this._countdown > 0
+                          },
                           props: {
                             type: 'text',
                             color: 'f-greyscale-1'
@@ -287,7 +357,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        this.customText?.continue?.btn_continue || $t(this, 'continue')
+                        `${customContinueText?.btn_continue || $t(this, 'continue')}${this._countdown > 0 ? `(${this._countdown}s)` : ''}`.trim()
                       )
                     ]
                   )

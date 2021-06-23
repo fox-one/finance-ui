@@ -4,12 +4,85 @@
   display: block;
   &-card {
     border-radius: 8px;
+    &-title {
+      padding: 33px 0 15px !important;
+    }
   }
   &-title {
     padding-left: 28px;
     background-image: url('../../assets/images/common/alert.svg');
     background-repeat: no-repeat;
-    background-size: 22px 19px;
     background-position: 0;
+    background-size: 22px 19px;
+  }
+
+  &-highlight {
+    position: relative;
+    width: 100%;
+    background: rgba(242, 154, 96, .3);
+    border-radius: 4px;
+    &::before {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 2px;
+       height: 100%;
+       background: #F44C4C;
+       content: '';
+    }
+    &-text {
+      color: #F44C4C;
+    }
+
+    &-impact {
+      margin: 6px 0 13px;
+      color: #75080A;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  &-assets {
+    width: 100%;
+    background-image: url('../../assets/images/common/divide-swap.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4px 34px;
+    &-left,
+    &-right {
+      flex-grow: 0;
+      &-amount{
+        width: 30vw;
+      }
+    }
+  }
+
+  &-action {
+    &-continue {
+      &-btn {
+        &-continue {
+          height: auto !important;
+        }
+      }
+    }
+
+    &-confirm {
+      &-btn {
+        &-cancel,
+        &-confirm {
+          height: auto !important;
+        }
+      }
+    }
+  }
+}
+
+.theme--dark {
+  .#{$prefix}-risk-info {
+    &-highlight {
+      &-impact {
+        color: #F34A4D;
+      }
+    }
   }
 }

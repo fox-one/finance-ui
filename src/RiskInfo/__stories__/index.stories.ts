@@ -24,11 +24,11 @@ storiesOf('RiskInfo', module)
     data: () => ({
       assetLeft: {
         symbol: 'BTC',
-        price: '$ 7,323,135,026,28'
+        amount: '$ 7,323,135,026,28'
       },
       assetRight: {
         symbol: 'pUSD',
-        price: '$ 2,64,935,39'
+        amount: '$ 2,64,935,39'
       }
     }),
     template: `<f-panel class="mt-15 text-center">
@@ -38,6 +38,8 @@ storiesOf('RiskInfo', module)
       <RiskInfo
         :asset-left="assetLeft"
         :asset-right="assetRight"
+        impact="128 %"
+        :countdown="5"
       >
         <template #activator="{ on }">
           <f-button color="warning" v-on="on">Activator</f-button>
@@ -52,11 +54,11 @@ storiesOf('RiskInfo', module)
     data: () => ({
       assetLeft: {
         symbol: 'pUSD',
-        price: '$ 2,64,935,39'
+        amount: '$ 2,64,935,39'
       },
       assetRight: {
         symbol: 'BTC',
-        price: '$ 7,323,135,026,28'
+        amount: '$ 7,323,135,026,28'
       },
       isShow: false
     }),
@@ -68,7 +70,46 @@ storiesOf('RiskInfo', module)
         v-model="isShow"
         :asset-left="assetLeft"
         :asset-right="assetRight"
+        impact="286 %"
       />
       <f-button color="pink" @click="isShow = true" class="f-greyscale-6" >Model</f-button>
+    </f-panel>`
+  }))
+  .add('Cancel will Reset Countdown', () => ({
+    components: {
+      RiskInfo
+    },
+    data: () => ({
+      assetLeft: {
+        symbol: 'BOX',
+        amount: '$ 57,323,135,026,28'
+      },
+      assetRight: {
+        symbol: 'USDT',
+        amount: '$ 64,935,39'
+      }
+    }),
+    methods: {
+      resetTimer () {
+        (this as any).$refs.riskInfo.resetTimer();
+      }
+    },
+    template: `<f-panel class="mt-15 text-center">
+      <h3 class="mb-4">开始交易 {{assetLeft.symbol}}</h3>
+      <p>BTC: 1</p>
+      <p>USDT: 100000</p>
+      <RiskInfo
+        :asset-left="assetLeft"
+        :asset-right="assetRight"
+        impact="128 %"
+        :countdown="3"
+        ref="riskInfo"
+        @cancel:continue="resetTimer"
+        @cancel:confirm="resetTimer"
+      >
+        <template #activator="{ on }">
+          <f-button color="warning" v-on="on">Activator</f-button>
+        </template>
+      </RiskInfo>
     </f-panel>`
   }));
