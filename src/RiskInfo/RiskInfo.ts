@@ -8,7 +8,6 @@ import {
 import classnames from '@utils/classnames';
 import { $t } from '@utils/t';
 import { VDialog, VCard, VCardText, VCardActions, VCardTitle } from 'vuetify/lib';
-import { FButton } from '@foxone/uikit/src/components/FButton';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
@@ -277,7 +276,7 @@ export class RiskInfo extends Vue {
                     },
                     [
                       h(
-                        FButton,
+                        'f-button',
                         {
                           staticClass: classes('action-confirm-btn-cancel', 'pt-6 pb-8'),
                           props: {
@@ -296,7 +295,7 @@ export class RiskInfo extends Vue {
                         customConfirmText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
-                        FButton,
+                        'f-button',
                         {
                           staticClass: classes('action-confirm-btn-confirm', 'pt-6 pb-8'),
                           props: {
@@ -323,7 +322,7 @@ export class RiskInfo extends Vue {
                     },
                     [
                       h(
-                        FButton,
+                        'f-button',
                         {
                           staticClass: classes('action-continue-btn-cancel', 'f-greyscale-6'),
                           props: {
@@ -340,7 +339,7 @@ export class RiskInfo extends Vue {
                         customContinueText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
-                        FButton,
+                        'f-button',
                         {
                           staticClass: classes('action-continue-btn-continue', 'py-8'),
                           attrs: {
