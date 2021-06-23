@@ -3,7 +3,7 @@ import RiskInfo from '../';
 
 describe('RiskInfo', () => {
   it('renders correctly', () => {
-    const wrapper = shallowMount(RiskInfo);
+    const wrapper = mount(RiskInfo);
     expect(wrapper).toMatchSnapshot();
   });
 });

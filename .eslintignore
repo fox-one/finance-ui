@@ -11,6 +11,7 @@ node_modules/
 **/__test__/
 **/__stories__/
 
+svgTransform.js
 doczrc.js
 .eslintrc.js
 *.config.js

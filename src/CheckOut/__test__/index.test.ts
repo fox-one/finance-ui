@@ -3,7 +3,7 @@ import CheckOut from '../';
 
 describe('CheckOut', () => {
   it('renders correctly', () => {
-    const wrapper = shallowMount(CheckOut);
+    const wrapper = mount(CheckOut);
     expect(wrapper).toMatchSnapshot();
   });
 });

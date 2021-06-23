@@ -1,5 +1,5 @@
 'use strict';
-
+const fs = require('fs');
 const path = require('path');
 
 module.exports = {
@@ -28,15 +28,17 @@ module.exports = {
     esmDir: path.resolve('es'),
 
     reserve: {
-      assets: [path.resolve(__dirname, 'src/assets')] // 构建结果保留其他资源的路径 (reserve other asset paths)
+      assets: [
+        path.resolve(__dirname, 'src/assets')
+      ] // 构建结果保留其他资源的路径 (reserve other asset paths)
     },
 
     preflight: {
       typescript: true, // 构建时是否处理ts或tsx文件 (whether or not process the ts or tsx files)
-      test: true, // 构建时是否进行单元测试 (whether or not process unit-test)
+      test: false, // 构建时是否进行单元测试 (whether or not process unit-test)
       eslint: true, // 构建时是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 构建时是否进行prettier检测 (whether or not process prettier checking)
-      stylelint: true, // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
+      stylelint: true // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
     }
   },
 
@@ -45,16 +47,16 @@ module.exports = {
     autoBuild: false,
 
     // 发布到npm仓库时，根据当前版本号自动设置 tag (auto set tag according to the current version)
-    autoTag: false,
+    autoTag: true,
 
     // 发布的git仓库地址 (project git repo url)
-    git: '',
+    git: 'git@github.com:fox-one/finance-ui.git',
 
     // 发布的npm仓库地址 (npm depository url)
     npm: '',
 
     preflight: {
-      test: true, // 发布前是否进行单元测试 (whether or not process unit-test)
+      test: false, // 发布前是否进行单元测试 (whether or not process unit-test)
       eslint: true, // 发布前是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 发布前是否进行prettier检测 (whether or not process prettier checking)
       stylelint: true, // 发布前是否进行stylelint检测 (whether or not process stylelint checking)
@@ -81,5 +83,39 @@ module.exports = {
     readme: true
   },
 
-  plugins: []
+  plugins: [
+    {
+      name: 'github-action-npm',
+      stage: 'release',
+      handler: function (config, options) {
+        const filePath = path.resolve(
+          __dirname,
+          './.github/workflows/cicd-npm.yml'
+        );
+        if (!fs.existsSync(filePath))
+          return Promise.resolve();
+        return new Promise(resolve => {
+          const tag = options.tag;
+          fs.readFile(filePath, function (
+            err,
+            data
+          ) {
+            if (err) throw err;
+            const newData = data
+              .toString()
+              .replace(
+                /tag:(\s\S)*\w*('|"){1}/g,
+                `tag: '${tag}'`
+              );
+            fs.writeFileSync(
+              filePath,
+              newData,
+              'utf-8'
+            );
+            resolve();
+          });
+        });
+      }
+    }
+  ]
 };
