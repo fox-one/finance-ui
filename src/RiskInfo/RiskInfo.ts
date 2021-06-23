@@ -1,7 +1,9 @@
 import {
   Component,
   Vue,
-  Prop
+  Prop,
+  Watch,
+  Model
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
 import { $t } from '@utils/t';
@@ -34,6 +36,7 @@ export interface ASSET {
 
 @Component
 export class RiskInfo extends Vue {
+  @Model('change', { default: false }) public value!: boolean;
   @Prop({ type: String, default: '' }) private className!: string;
   @Prop({ type: String, default: '?%' }) private impact!: string;
   @Prop({ type: Object, default: () => ({}) }) private assetLeft!: ASSET;
@@ -42,6 +45,16 @@ export class RiskInfo extends Vue {
   @Prop({ type: Object, default: () => ({ continue: {}, confirm: {} }) }) private customText!: CUSTOM_TEXT;
 
   private isContinue = false;
+  private isShow = false;
+
+  @Watch('value')
+  public handleValueChange (val: boolean) {
+    this.isShow = val;
+  }
+
+  public created () {
+    this.isShow = this.value;
+  }
 
   public render(h: CreateElement): VNode {
     const activator = this.$scopedSlots.activator;
@@ -57,6 +70,15 @@ export class RiskInfo extends Vue {
         scopedSlots: {
           activator: ({ on, attrs }) => {
             return (activator && activator({ on, attrs })) || null;
+          },
+        },
+        props: {
+          value: this.isShow
+        },
+        on: {
+          input: (val: any) => {
+            this.isShow = val;
+            this.$emit('change', val);
           },
         },
       },
@@ -78,7 +100,7 @@ export class RiskInfo extends Vue {
                   {
                     staticClass: `${classes('title')} f-greyscale-1 f-title-1`
                   },
-                  [customContinueText.title || $t(this, 'warning')]
+                  [customContinueText.title || $t(this, this.isContinue ? 'risk_info_confirm_title' : 'warning')]
                 )
               ]
             ),
@@ -200,6 +222,8 @@ export class RiskInfo extends Vue {
                           on: {
                             click: () => {
                               this.isContinue = false;
+                              this.isShow = false;
+                              this.$emit('change', false);
                               this.$emit('cancel');
                             }
                           }
@@ -216,6 +240,8 @@ export class RiskInfo extends Vue {
                           on: {
                             click: () => {
                               this.isContinue = false;
+                              this.isShow = false;
+                              this.$emit('change', false);
                               this.$emit('confirm');
                             }
                           }
@@ -238,7 +264,11 @@ export class RiskInfo extends Vue {
                             color: 'pink'
                           },
                           on: {
-                            click: () => this.$emit('cancel')
+                            click: () => {
+                              this.isShow = false;
+                              this.$emit('change', false);
+                              this.$emit('cancel');
+                            }
                           }
                         },
                         this.customText?.continue?.btn_cancel || $t(this, 'cancel')

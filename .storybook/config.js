@@ -24,7 +24,8 @@ addDecorator(() => ({
 }));
 
 setConsoleOptions({
-  panelExclude: []
+  panelExclude: [],
+  info: 'info'
 });
 withOptions({
   name: 'finance-ui'

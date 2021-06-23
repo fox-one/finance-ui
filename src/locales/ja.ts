@@ -8,7 +8,8 @@ export default {
     confirm: '確認',
     continue: '続ける',
     swap: 'スワップ',
-    transaction: 'Transaction',
+    risk_info_confirm_title:
+      'Confirm transaction',
     risk_info_confirm_content:
       'Once the transaction is executed, it is irrevocable, please pay after confirmation carefully'
   }
