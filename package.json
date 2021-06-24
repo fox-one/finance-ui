@@ -1,5 +1,5 @@
 {
-  "name": "finance-ui",
+  "name": "@foxone/finance-ui",
   "version": "0.0.3",
   "description": "The Financial UI Component Library",
   "main": "lib/index.js",
