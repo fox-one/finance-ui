@@ -1,7 +1,7 @@
 {
   "name": "@foxone/finance-ui",
   "version": "0.0.3",
-  "description": "The Financial UI Component Library",
+  "description": "The Financial UI Component Library Based on @foxone/uikit and vuetify",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
@@ -25,7 +25,7 @@
     "build:demo": "build-storybook -c .storybook -o dist-story",
     "release": "omni release"
   },
-  "keywords": [],
+  "keywords": ["financial", "financial-ui"],
   "author": "",
   "peerDependencies": {
     "@foxone/uikit": "2.x.x",
