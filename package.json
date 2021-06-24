@@ -1,6 +1,6 @@
 {
   "name": "@foxone/finance-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The Financial UI Component Library Based on @foxone/uikit and vuetify",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,7 +35,7 @@
     "vue": "2.6.x",
     "vuetify": "2.x.x"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "classnames": "~2.2.6"
   },
