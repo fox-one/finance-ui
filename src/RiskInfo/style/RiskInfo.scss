@@ -3,7 +3,7 @@
 .#{$prefix}-risk-info {
   display: block;
   &-card {
-    border-radius: 8px;
+    border-radius: 8px !important;
     &-title {
       padding: 33px 0 15px !important;
     }
@@ -12,8 +12,8 @@
     padding-left: 28px;
     background-image: url('../../assets/images/common/alert.svg');
     background-repeat: no-repeat;
-    background-position: 0;
-    background-size: 22px 19px;
+    background-position: left center;
+    background-size: 24px;
   }
 
   &-highlight {
@@ -79,9 +79,18 @@
 
 .theme--dark {
   .#{$prefix}-risk-info {
+    &-title {
+      background-image: url('../../assets/images/common/alert-dark.svg');
+    }
+
     &-highlight {
       &-impact {
         color: #F34A4D;
+      }
+
+      &::before,
+      &-text {
+        color: #F67070;
       }
     }
   }

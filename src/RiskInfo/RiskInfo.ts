@@ -8,6 +8,7 @@ import {
 import classnames from '@utils/classnames';
 import { $t } from '@utils/t';
 import { VDialog, VCard, VCardText, VCardActions, VCardTitle } from 'vuetify/lib';
+import { FButton } from '@foxone/uikit/src/components/FButton';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
@@ -25,6 +26,17 @@ export interface CUSTOM_TEXT {
     btn_confirm?: string;
   };
 }
+export interface CUSTOM_COLOR {
+  continue?: {
+    btn_cancel?: string;
+    btn_continue?: string;
+  };
+  confirm?: {
+    btn_cancel?: string;
+    btn_confirm?: string;
+  };
+}
+
 
 export interface ASSET {
   symbol: string;
@@ -42,27 +54,28 @@ export class RiskInfo extends Vue {
   @Prop({ type: Object, default: () => ({}) }) private assetRight!: ASSET;
   @Prop({ type: Number, default: 0 }) private countdown!: number;
   @Prop({ type: Object, default: () => ({ continue: {}, confirm: {} }) }) private customText!: CUSTOM_TEXT;
+  @Prop({ type: Object, default: () => ({ continue: {}, confirm: {} }) }) private customColor!: CUSTOM_COLOR;
 
   private isContinue = false;
   private isShow = false;
   private timer: null | ReturnType<typeof setTimeout> = null;
   private count = 0;
 
-  private get hasAssets () {
+  private get hasAssets() {
     let res = false;
     try {
-      res = JSON.stringify(this.assetLeft) !== '{}' && JSON.stringify(this.assetRight) !== '{}';
+      res = this.assetLeft && JSON.stringify(this.assetLeft) !== '{}' && this.assetRight && JSON.stringify(this.assetRight) !== '{}';
     } catch (error) {
       res = false;
     }
     return res;
   }
 
-  private get _countdown () {
+  private get _countdown() {
     return this.count;
   }
 
-  private onCountDown () {
+  private onCountDown() {
     if (this.count <= 0) {
       this.timer = null;
       return;
@@ -73,7 +86,7 @@ export class RiskInfo extends Vue {
     }, 1000);
   }
 
-  public resetTimer () {
+  public resetTimer() {
     setTimeout(() => {
       if (this.timer) {
         clearTimeout(this.timer);
@@ -84,11 +97,11 @@ export class RiskInfo extends Vue {
   }
 
   @Watch('value')
-  public handleValueChange (val: boolean) {
+  public handleValueChange(val: boolean) {
     this.isShow = val;
   }
 
-  public created () {
+  public created() {
     this.isShow = this.value;
     this.count = this.countdown;
   }
@@ -104,6 +117,8 @@ export class RiskInfo extends Vue {
     const activator = this.$scopedSlots.activator;
     const customContinueText = this.customText.continue ?? {};
     const customConfirmText = this.customText.confirm ?? {};
+    const customContinueColor = this.customColor.continue ?? {};
+    const customConfirmColor = this.customColor.confirm ?? {};
 
     const classes = classnames('risk-info');
     return h(
@@ -117,7 +132,8 @@ export class RiskInfo extends Vue {
           },
         },
         props: {
-          value: this.isShow
+          value: this.isShow,
+          'overlay-opacity': 0
         },
         on: {
           input: (val: any) => {
@@ -223,14 +239,14 @@ export class RiskInfo extends Vue {
                                 {
                                   staticClass: classes('assets-left-symbol', 'f-greyscale-1 f-body-2')
                                 },
-                                [this.assetLeft.symbol]
+                                [this.assetLeft?.symbol]
                               ),
                               h(
                                 'span',
                                 {
                                   staticClass: classes('assets-left-amount', 'f-greyscale-3 f-caption text-truncate')
                                 },
-                                [this.assetLeft.amount]
+                                [this.assetLeft?.amount]
                               )
                             ]
                           ),
@@ -245,14 +261,14 @@ export class RiskInfo extends Vue {
                                 {
                                   staticClass: classes('assets-right-symbol', 'f-greyscale-1 f-body-2')
                                 },
-                                [this.assetRight.symbol]
+                                [this.assetRight?.symbol]
                               ),
                               h(
                                 'span',
                                 {
                                   staticClass: classes('assets-right-amount', 'f-greyscale-3 f-caption text-truncate')
                                 },
-                                [this.assetRight.amount]
+                                [this.assetRight?.amount]
                               )
                             ]
                           )
@@ -276,12 +292,12 @@ export class RiskInfo extends Vue {
                     },
                     [
                       h(
-                        'f-button',
+                        FButton,
                         {
                           staticClass: classes('action-confirm-btn-cancel', 'pt-6 pb-8'),
                           props: {
                             type: 'text',
-                            color: 'f-greyscale-6'
+                            color: customConfirmColor?.btn_cancel || 'f-greyscale-6'
                           },
                           on: {
                             click: () => {
@@ -295,12 +311,12 @@ export class RiskInfo extends Vue {
                         customConfirmText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
-                        'f-button',
+                        FButton,
                         {
                           staticClass: classes('action-confirm-btn-confirm', 'pt-6 pb-8'),
                           props: {
                             type: 'text',
-                            color: 'error'
+                            color: customConfirmColor?.btn_confirm || 'error'
                           },
                           on: {
                             click: () => {
@@ -322,11 +338,11 @@ export class RiskInfo extends Vue {
                     },
                     [
                       h(
-                        'f-button',
+                        FButton,
                         {
                           staticClass: classes('action-continue-btn-cancel', 'f-greyscale-6'),
                           props: {
-                            color: 'pink'
+                            color: customContinueColor?.btn_cancel || 'pink'
                           },
                           on: {
                             click: () => {
@@ -339,7 +355,7 @@ export class RiskInfo extends Vue {
                         customContinueText?.btn_cancel || $t(this, 'cancel')
                       ),
                       h(
-                        'f-button',
+                        FButton,
                         {
                           staticClass: classes('action-continue-btn-continue', 'py-8'),
                           attrs: {
@@ -347,7 +363,7 @@ export class RiskInfo extends Vue {
                           },
                           props: {
                             type: 'text',
-                            color: 'f-greyscale-1'
+                            color: customContinueColor?.btn_continue || 'f-greyscale-1'
                           },
                           on: {
                             click: () => {

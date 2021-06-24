@@ -17,7 +17,7 @@ storiesOf('RiskInfo', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('Usage with slot', () => ({
+  .add('Usage with Slot', () => ({
     components: {
       RiskInfo
     },
@@ -47,7 +47,7 @@ storiesOf('RiskInfo', module)
       </RiskInfo>
     </f-panel>`
   }))
-  .add('Usage with v-model', () => ({
+  .add('Usage with V-Model', () => ({
     components: {
       RiskInfo
     },
@@ -90,7 +90,7 @@ storiesOf('RiskInfo', module)
       }
     }),
     methods: {
-      resetTimer () {
+      resetTimer() {
         (this as any).$refs.riskInfo.resetTimer();
       }
     },
@@ -108,7 +108,40 @@ storiesOf('RiskInfo', module)
         @cancel:confirm="resetTimer"
       >
         <template #activator="{ on }">
-          <f-button color="warning" v-on="on">Activator</f-button>
+          <f-button color="warning" v-on="on">Swap</f-button>
+        </template>
+      </RiskInfo>
+    </f-panel>`
+  }))
+  .add('With Pando-Leaf Style', () => ({
+    components: {
+      RiskInfo
+    },
+    data: () => ({
+      customText: {
+        continue: {
+          title: 'Liquidation Warning',
+          highlights: ['Collateral rate has reached', 'Liquidation ratio is 150.00%, reach this you will be liquidatioon']
+        }
+      },
+      customColor: {
+        continue: {
+          btn_cancel: 'f-bg-greyscale-1'
+        }
+      }
+    }),
+    template: `<f-panel class="mt-15 text-center">
+      <h3 class="mb-4">开始交易 Pando</h3>
+      <p>BTC: 1</p>
+      <p>USDT: 100000</p>
+      <RiskInfo
+        :custom-text="customText"
+        :custom-color="customColor"
+        impact="203.8%"
+        :countdown="10"
+      >
+        <template #activator="{ on }">
+          <f-button color="warning" v-on="on">Pando</f-button>
         </template>
       </RiskInfo>
     </f-panel>`
