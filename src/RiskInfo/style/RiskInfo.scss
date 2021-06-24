@@ -1,7 +1,7 @@
 @import '../../styles/variable.scss';
 
 .#{$prefix}-risk-info {
-  display: block;
+  box-shadow: none !important;
   &-card {
     border-radius: 8px !important;
     &-title {

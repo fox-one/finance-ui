@@ -124,8 +124,6 @@ export class RiskInfo extends Vue {
     return h(
       VDialog,
       {
-        staticClass: classes(),
-        class: this.className,
         scopedSlots: {
           activator: ({ on, attrs }) => {
             return (activator && activator({ on, attrs })) || null;
@@ -133,7 +131,7 @@ export class RiskInfo extends Vue {
         },
         props: {
           value: this.isShow,
-          'overlay-opacity': 0
+          'content-class': classes(void 0, this.className)
         },
         on: {
           input: (val: any) => {
