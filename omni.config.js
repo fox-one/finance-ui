@@ -35,7 +35,7 @@ module.exports = {
 
     preflight: {
       typescript: true, // 构建时是否处理ts或tsx文件 (whether or not process the ts or tsx files)
-      test: true, // 构建时是否进行单元测试 (whether or not process unit-test)
+      test: false, // 构建时是否进行单元测试 (whether or not process unit-test)
       eslint: true, // 构建时是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 构建时是否进行prettier检测 (whether or not process prettier checking)
       stylelint: true // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
