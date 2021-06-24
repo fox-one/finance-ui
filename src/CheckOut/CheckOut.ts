@@ -8,6 +8,7 @@ import classnames from '@utils/classnames';
 import Amount from './Amount';
 import Channel from './Channel';
 import PayAction from './PayAction';
+import { FBottomSheet } from '@foxone/uikit/src/components/FBottomSheet';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
@@ -55,14 +56,14 @@ export class CheckOut extends Vue {
 
   private paychannel: ChannelType = {} as ChannelType;
 
-  private isChannelSelected (channel: ChannelType) {
+  private isChannelSelected(channel: ChannelType) {
     return (
       this.paychannel?.channel === channel.channel &&
       this.paychannel.asset_id === channel.asset_id
     );
   }
 
-  public created () {
+  public created() {
     this.paychannel = this.channels?.[0];
   }
 
@@ -76,7 +77,7 @@ export class CheckOut extends Vue {
       },
       [
         h(
-          'f-bottom-sheet',
+          FBottomSheet,
           {
             props: {
               value: this.show

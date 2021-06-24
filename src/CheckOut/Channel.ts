@@ -4,6 +4,7 @@ import {
   Prop
 } from 'vue-property-decorator';
 import checkIcon from '@assets/images/common/check.svg';
+import { VListItem, VListItemAvatar, VListItemIcon, VListItemContent, VImg } from 'vuetify/lib';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 import type { ChannelType } from './CheckOut';
@@ -21,7 +22,7 @@ export class Channel extends Vue {
 
   public render(h: CreateElement): VNode {
     return h(
-      'v-list-item',
+      VListItem,
       {
         props: {
           ripple: false
@@ -32,7 +33,7 @@ export class Channel extends Vue {
       },
       [
         h(
-          'v-list-item-avatar',
+          VListItemAvatar,
           {
             props: {
               size: '28'
@@ -40,7 +41,7 @@ export class Channel extends Vue {
           },
           [
             h(
-              'v-img',
+              VImg,
               {
                 props: {
                   src: this.channel.channel_icon || this.channel.asset_icon
@@ -50,14 +51,14 @@ export class Channel extends Vue {
           ]
         ),
         h(
-          'v-list-item-content',
+          VListItemContent,
           this.channel.channel_name
         ),
         this.selected ? h(
-          'v-list-item-icon',
+          VListItemIcon,
           [
             h(
-              'v-img',
+              VImg,
               {
                 props: {
                   small: true,

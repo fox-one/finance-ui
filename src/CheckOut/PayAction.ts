@@ -4,12 +4,13 @@ import {
   Prop
 } from 'vue-property-decorator';
 import { $t } from '@utils/t';
+import { FButton } from '@foxone/uikit/src/components/FButton';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
 @Component
 export class PayAction extends Vue {
-  @Prop({ type: Function, default: () => {} }) private onPay!: () => any;
+  @Prop({ type: Function, default: () => { } }) private onPay!: () => any;
 
   private loading = false;
 
@@ -36,7 +37,7 @@ export class PayAction extends Vue {
       },
       [
         h(
-          'f-button',
+          FButton,
           {
             props: {
               block: true,

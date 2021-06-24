@@ -5,6 +5,7 @@ import {
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
 import { transfer } from '@utils/checkout';
+import { VLayout, VImg } from 'vuetify/lib';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 import type { ChannelType, Fiat } from './CheckOut';
@@ -19,7 +20,7 @@ export class Amount extends Vue {
   @Prop({ type: Object, default: () => ({}) }) private channel!: ChannelType;
   @Prop({ type: Object, default: () => ({ price_ratio: 1, symbol: '$' }) }) private fiat!: Fiat;
 
-  private get actualAmount () {
+  private get actualAmount() {
     return transfer(
       1,
       this.channel.price_ratio,
@@ -38,7 +39,7 @@ export class Amount extends Vue {
       },
       [
         h(
-          'v-layout',
+          VLayout,
           {
             attrs: {
               'align-center': true,
@@ -51,7 +52,7 @@ export class Amount extends Vue {
               { staticClass: 'mr-3' },
               [
                 h(
-                  'v-img',
+                  VImg,
                   {
                     props: {
                       width: '38',

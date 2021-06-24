@@ -2,6 +2,7 @@
 
 ## Example
 
+### Common Usage
 ```vue
 <template>
   <risk-info
@@ -36,6 +37,41 @@
         this.$refs.riskInfo.resetTimer();
       }
     }
+  })
+</script>
+```
+
+### With Custom Text and Color
+```vue
+<template>
+  <risk-info
+    :custom-text="customText"
+    :custom-color="customColor"
+    impact="203.8%"
+    :countdown="10"
+  >
+    <template #activator="{ on }">
+      <f-button color="warning" v-on="on">Pando</f-button>
+    </template>
+  </risk-info>
+</template>
+<script lang="ts">
+  import Vue from 'vue'
+
+  export default Vue.extend({
+    data: () => ({
+      customText: {
+        continue: {
+          title: 'Liquidation Warning',
+          highlights: ['Collateral rate has reached', 'Liquidation ratio is 150.00%, reach this you will be liquidatioon']
+        }
+      },
+      customColor: {
+        continue: {
+          btn_cancel: 'f-bg-greyscale-1'
+        }
+      }
+    })
   })
 </script>
 ```

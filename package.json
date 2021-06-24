@@ -97,6 +97,7 @@
     "husky": "4.2.3",
     "ip": "1.1.5",
     "jest": "25.1.0",
+    "jest-svg-transformer": "^1.0.0",
     "jest-transform-stub": "2.0.0",
     "less": "3.11.1",
     "less-loader": "~5.0.0",
