@@ -1,6 +1,7 @@
 import AssetUpperLimitInput from './AssetUpperLimitInput';
 import CheckOut from './CheckOut';
 import RiskInfo from './RiskInfo';
+import RiskSlider from './RiskSlider';
 
 import type { VueConstructor } from 'vue';
 
@@ -11,6 +12,7 @@ function install(Vue: VueConstructor<Vue>) {
   Vue.component('FAssetUpperLimitInput', AssetUpperLimitInput);
   Vue.component('FCheckOut', CheckOut);
   Vue.component('FRiskInfo', RiskInfo);
+  Vue.component('FRiskSlider', RiskSlider);
 }
 
 let GlobalVue;
