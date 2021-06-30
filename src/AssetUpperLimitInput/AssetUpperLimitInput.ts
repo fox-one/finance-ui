@@ -11,11 +11,12 @@ import { format } from '@utils/number';
 import { VLayout } from 'vuetify/lib';
 import { FAssetAmountInput } from '@foxone/uikit/src/components/FAssetAmountInput';
 import { FButton } from '@foxone/uikit/src/components/FButton';
-import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 import type { MixinAsset } from '@foxone/uikit/src/components/FAssetAmountInput/types';
+
+const VueSlider = require('vue-slider-component');
 
 @Component
 export class AssetUpperLimitInput extends Vue {

@@ -5,10 +5,11 @@ import {
   Model
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
-import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
+
+const VueSlider = require('vue-slider-component');
 
 @Component
 export class RiskSlider extends Vue {
