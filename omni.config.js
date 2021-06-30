@@ -56,7 +56,7 @@ module.exports = {
     npm: '',
 
     preflight: {
-      test: true, // 发布前是否进行单元测试 (whether or not process unit-test)
+      test: false, // 发布前是否进行单元测试 (whether or not process unit-test)
       eslint: true, // 发布前是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 发布前是否进行prettier检测 (whether or not process prettier checking)
       stylelint: true, // 发布前是否进行stylelint检测 (whether or not process stylelint checking)

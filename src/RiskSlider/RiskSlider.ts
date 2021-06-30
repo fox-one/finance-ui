@@ -31,7 +31,7 @@ export class RiskSlider extends Vue {
   }
 
   private get isDark () {
-    return this.$vuetify.theme.dark;
+    return this.$vuetify?.theme?.dark;
   }
 
   private get colors () {
