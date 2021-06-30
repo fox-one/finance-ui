@@ -4,7 +4,7 @@ import {
   Prop
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
-import { transfer } from '@utils/checkout';
+import { transfer } from '@utils/number';
 import { VLayout, VImg } from 'vuetify/lib';
 /* import types */
 import type { CreateElement, VNode } from 'vue';

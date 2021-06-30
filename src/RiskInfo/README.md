@@ -1,11 +1,11 @@
-# RiskInfo
+# FRiskInfo
 
 ## Example
 
 ### Common Usage
 ```vue
 <template>
-  <risk-info
+  <f-risk-info
     :asset-left="assetLeft"
     :asset-right="assetRight"
     impact="128 %"
@@ -15,7 +15,7 @@
     <template #activator="{ on }">
       <f-button color="warning" v-on="on">Swap</f-button>
     </template>
-  </risk-info>
+  </f-risk-info>
 </template>
 <script lang="ts">
   import Vue from 'vue'
@@ -44,7 +44,7 @@
 ### With Custom Text and Color
 ```vue
 <template>
-  <risk-info
+  <f-risk-info
     :custom-text="customText"
     :custom-color="customColor"
     impact="203.8%"
@@ -53,7 +53,7 @@
     <template #activator="{ on }">
       <f-button color="warning" v-on="on">Pando</f-button>
     </template>
-  </risk-info>
+  </f-risk-info>
 </template>
 <script lang="ts">
   import Vue from 'vue'

@@ -47,7 +47,7 @@ export interface ASSET {
 
 @Component
 export class RiskInfo extends Vue {
-  @Model('change', { default: false }) public value!: boolean;
+  @Model('change', { default: false }) public readonly value!: boolean;
   @Prop({ type: String, default: '' }) private className!: string;
   @Prop({ type: String, default: '?%' }) private impact!: string;
   @Prop({ type: Object, default: () => ({}) }) private assetLeft!: ASSET;
@@ -302,7 +302,7 @@ export class RiskInfo extends Vue {
                               this.isShow = false;
                               this.$emit('change', false);
                               this.$emit('cancel:confirm');
-                              setTimeout(() => (this.isContinue = false), 500);
+                              setTimeout(() => (this.isContinue = false), 300);
                             }
                           }
                         },
@@ -321,7 +321,7 @@ export class RiskInfo extends Vue {
                               this.isShow = false;
                               this.$emit('change', false);
                               this.$emit('confirm');
-                              setTimeout(() => (this.isContinue = false), 500);
+                              setTimeout(() => (this.isContinue = false), 300);
                             }
                           }
                         },

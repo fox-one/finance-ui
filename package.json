@@ -25,7 +25,10 @@
     "build:demo": "build-storybook -c .storybook -o dist-story",
     "release": "omni release"
   },
-  "keywords": ["financial", "financial-ui"],
+  "keywords": [
+    "financial",
+    "financial-ui"
+  ],
   "author": "",
   "peerDependencies": {
     "@foxone/uikit": "2.x.x",
@@ -37,7 +40,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "classnames": "~2.2.6"
+    "classnames": "~2.2.6",
+    "vue-slider-component": "~3.2.13"
   },
   "devDependencies": {
     "@babel/core": "~7.10.0",

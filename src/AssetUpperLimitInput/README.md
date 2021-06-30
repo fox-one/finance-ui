@@ -1,9 +1,9 @@
-# AssetUpperLimitInput
+# FAssetUpperLimitInput
 
 ## Example
 
 ```tsx
-import { AssetUpperLimitInput } from './AssetUpperLimitInput';
+import { FAssetUpperLimitInput } from './FAssetUpperLimitInput';
 
-<AssetUpperLimitInput />
+<f-asset-upper-limit-input />
 ```

@@ -1,9 +1,9 @@
-# CheckOut
+# FCheckOut
 
 ## Example
 
 ```tsx
-import { CheckOut } from './CheckOut';
+import { FCheckOut } from './FCheckOut';
 
-<CheckOut />
+<f-check-out />
 ```
