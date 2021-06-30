@@ -160,6 +160,7 @@ export class AssetUpperLimitInput extends Vue {
                             this.setSliderValueWithLimit(+this._value_input);
                             this.$emit('input', this._value_input);
                             this.$emit('click:amount');
+                            this.$nextTick(() => this.$forceUpdate());
                           }
                         }
                       },
