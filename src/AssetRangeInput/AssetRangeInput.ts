@@ -28,7 +28,6 @@ export class AssetRangeInput extends Vue {
   @Prop({ type: String, default: '' }) private className!: string;
   @Prop({ type: String, default: 'primary' }) private color!: string;
 
-  @Prop({ type: String, default: '' }) private label!: string;
   @Prop({ type: Boolean, default: true }) private selectable!: boolean;
   @Prop({ type: Boolean, default: false }) private border!: boolean;
   @Prop({ type: Boolean, default: false }) private loading!: boolean;
@@ -114,7 +113,6 @@ export class AssetRangeInput extends Vue {
               {
                 props: {
                   value: this._value_input,
-                  label: this.label,
                   assets: this.assets,
                   asset: this.bindAsset,
                   selectable: this.selectable,
