@@ -248,10 +248,13 @@ export class AssetRangeInput extends Vue {
                 on: {
                   change: val => {
                     this._value_slider = +val;
-                    if (this.hasUpperLimit) this._value_input = format({
-                      n: +val / 100 * this.max,
-                      p: 8
-                    });
+                    if (this.hasUpperLimit) {
+                      this._value_input = format({
+                        n: +val / 100 * this.max,
+                        p: 8
+                      });
+                      this.$emit('input', this._value_input);
+                    }
                     this.$nextTick(() => this.$forceUpdate());
                   }
                 }
