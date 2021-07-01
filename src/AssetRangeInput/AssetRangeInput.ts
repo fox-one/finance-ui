@@ -128,6 +128,7 @@ export class AssetRangeInput extends Vue {
                     if (!this.isInRange(+val)) this.$emit('error:limit');
                     this._value_input = val;
                     this.$emit('input', val);
+                    if (!this.value) this.$nextTick(() => this.$forceUpdate());
                     this.setSliderValueWithLimit(+val);
                   }
                 },
@@ -230,7 +231,8 @@ export class AssetRangeInput extends Vue {
                   max: 100,
                   interval: 0.01,
                   lazy: true,
-                  tooltip: 'none'
+                  tooltip: 'none',
+                  contained: true
                 },
                 on: {
                   change: val => {
@@ -252,7 +254,11 @@ export class AssetRangeInput extends Vue {
           {
             staticClass: 'px-8 py-4',
             props: {
-              color: this.color
+              color: this.color,
+
+            },
+            attrs: {
+              disabled: !this.isInRange(+this._value_input)
             },
             on: {
               click: () => {
