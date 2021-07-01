@@ -16,6 +16,7 @@ yarn add @foxone/finance-ui
 ```typescript
 import Vue from "vue";
 import FinanceUI from "@foxone/finance-ui";
+import "@foxone/finance-ui/es/index.css";
 
 Vue.use(FinanceUI);
 
@@ -94,6 +95,7 @@ Vue.use(FinanceUI);
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
   import { RiskSlider } from '@foxone/finance-ui';
+  import "@foxone/finance-ui/es/RiskSlider/style/css";
 
   @Component(
     components: {

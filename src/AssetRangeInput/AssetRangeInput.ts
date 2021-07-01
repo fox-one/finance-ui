@@ -158,7 +158,7 @@ export class AssetRangeInput extends Vue {
                       {
                         staticClass: classes('top-tips-left-txt', 'mr-1')
                       },
-                      this.inputTips?.tipLeft
+                      [this.inputTips?.tipLeft]
                     ) : null,
                     this.inputTips?.amount ? h(
                       'span',
@@ -184,7 +184,7 @@ export class AssetRangeInput extends Vue {
                   {
                     staticClass: classes('top-tips-right')
                   },
-                  this.inputTips.tipRight
+                  [this.inputTips.tipRight]
                 ) : null
               ]
             )
