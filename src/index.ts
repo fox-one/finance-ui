@@ -1,5 +1,6 @@
 import AssetRangeInput from './AssetRangeInput';
 import CheckOut from './CheckOut';
+import ConnectWallet from './ConnectWallet';
 import RiskInfo from './RiskInfo';
 import RiskSlider from './RiskSlider';
 
@@ -11,6 +12,7 @@ function install(Vue: VueConstructor<Vue>) {
   install.installed = true;
   Vue.component('AssetRangeInput', AssetRangeInput);
   Vue.component('CheckOut', CheckOut);
+  Vue.component('ConnectWallet', ConnectWallet);
   Vue.component('RiskInfo', RiskInfo);
   Vue.component('RiskSlider', RiskSlider);
 }
@@ -25,6 +27,7 @@ if (GlobalVue) install(GlobalVue);
 
 export * from './AssetRangeInput';
 export * from './CheckOut';
+export * from './ConnectWallet';
 export * from './RiskInfo';
 export * from './RiskSlider';
 
