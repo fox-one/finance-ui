@@ -3,7 +3,7 @@
 ## Example
 
 ```tsx
-import { FCheckOut } from './FCheckOut';
+import { CheckOut } from './FCheckOut';
 
-<f-check-out />
+<check-out />
 ```

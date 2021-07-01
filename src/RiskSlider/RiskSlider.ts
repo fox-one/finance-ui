@@ -9,6 +9,7 @@ import 'vue-slider-component/theme/default.css';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
+// avoid typescript error
 const VueSlider = require('vue-slider-component');
 
 @Component
@@ -17,11 +18,13 @@ export class RiskSlider extends Vue {
 
   @Prop({ type: String, default: '' }) private className!: string;
   @Prop({ type: Boolean, default: true }) private disabled!: boolean;
-  @Prop({ type: Object, default: () => ({
-    low: 0.7,
-    mid: 0.15,
-    high: 0.15
-  }) }) private scale!: {
+  @Prop({
+    type: Object, default: () => ({
+      low: 0.7,
+      mid: 0.15,
+      high: 0.15
+    })
+  }) private scale!: {
     low: number;
     mid: number;
     high: number;
@@ -31,11 +34,11 @@ export class RiskSlider extends Vue {
     highlight?: string;
   }
 
-  private get isDark () {
+  private get isDark() {
     return this.$vuetify?.theme?.dark;
   }
 
-  private get colors () {
+  private get colors() {
     return {
       dark: {
         low: '#56D471',
@@ -50,7 +53,7 @@ export class RiskSlider extends Vue {
     };
   }
 
-  public get currentScale () {
+  public get currentScale() {
     const val = +this.value / 100;
     if (val <= this.scale.low) {
       return 'low';

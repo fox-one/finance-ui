@@ -5,5 +5,5 @@
 ```tsx
 import { Coupon } from './Coupon';
 
-<Coupon />
+<coupon />
 ```

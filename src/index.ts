@@ -1,4 +1,4 @@
-import AssetUpperLimitInput from './AssetUpperLimitInput';
+import AssetRangeInput from './AssetRangeInput';
 import CheckOut from './CheckOut';
 import RiskInfo from './RiskInfo';
 import RiskSlider from './RiskSlider';
@@ -9,10 +9,10 @@ install.installed = false;
 function install(Vue: VueConstructor<Vue>) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('FAssetUpperLimitInput', AssetUpperLimitInput);
-  Vue.component('FCheckOut', CheckOut);
-  Vue.component('FRiskInfo', RiskInfo);
-  Vue.component('FRiskSlider', RiskSlider);
+  Vue.component('AssetRangeInput', AssetRangeInput);
+  Vue.component('CheckOut', CheckOut);
+  Vue.component('RiskInfo', RiskInfo);
+  Vue.component('RiskSlider', RiskSlider);
 }
 
 let GlobalVue;
@@ -22,6 +22,11 @@ if (typeof win !== 'undefined') {
 }
 
 if (GlobalVue) install(GlobalVue);
+
+export * from './AssetRangeInput';
+export * from './CheckOut';
+export * from './RiskInfo';
+export * from './RiskSlider';
 
 export default {
   install

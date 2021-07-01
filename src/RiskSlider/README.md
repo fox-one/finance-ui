@@ -4,24 +4,29 @@
 
 ```vue
 <template>
-  <RiskSlider>
-    {{ 'Hello RiskSlider' }}
-  </RiskSlider>
+  <risk-slider
+    v-model="precent"
+    :tips="tips"
+    :scale="scale"
+    ref="slider"
+  />
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { RiskSlider } from './RiskSlider';
 
-  @Component(
-    components: {
-      RiskSlider
-    }
-  )
+  @Component
   export class App extends Vue {
-    mounted () {
-      console.info('mounted!')
-    }
+    precent = 30;
+    tips = {
+      tip: 'Collateralization Ration reach',
+      highlight: `${(30.21 / 50 * 100).toFixed(2)}%, it’s in low-risk now.`
+    };
+    scale = {
+      low: 0.65,
+      mid: 0.2,
+      high: 0.15
+    };
   }
 </script>
 ```

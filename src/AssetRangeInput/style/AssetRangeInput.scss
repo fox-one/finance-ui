@@ -1,4 +1,72 @@
-.prefix-assetrangeinput {
-  display: block;
-  color: green;
+@import '../../styles/variable.scss';
+
+.#{$prefix}-asset-range-input {
+  position: relative;
+  &-top {
+    width: 100%;
+    &-tips {
+      &-left {
+        &-amount {
+          padding-right: 16px;
+          background-image: url('../../assets/images/common/fill.svg');
+          background-repeat: no-repeat;
+          background-position: right center;
+          background-size: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &-mid {
+    width: 100%;
+  }
+
+  .vue-slider-dot-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    border: 4px solid #000;
+    box-shadow: none;
+    transform: translate(-50%, -50%);
+  }
+
+  .vue-slider-dot-handle.vue-slider-dot-handle-focus {
+    box-shadow: none;
+  }
+
+  .vue-slider-rail {
+    background-color: #ebebeb;
+    .vue-slider-process {
+      background-color: #000;
+    }
+  }
+}
+
+.theme--dark {
+  .#{$prefix}-asset-range-input {
+    &-top{
+      &-tips {
+        &-left {
+          &-amount {
+            background-image: url('../../assets/images/common/fill-dark.svg');
+          }
+        }
+      }
+    }
+
+    .vue-slider-dot-handle {
+      background-color: #000;
+      border-color: #fff;
+    }
+
+    .vue-slider-rail {
+      background-color: #36383b;
+      .vue-slider-process {
+        background-color: #fff;
+      }
+    }
+  }
 }

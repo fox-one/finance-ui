@@ -1,1 +1,0 @@
-import './AssetUpperLimitInput.scss';

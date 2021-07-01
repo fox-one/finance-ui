@@ -5,7 +5,7 @@
 ### Common Usage
 ```vue
 <template>
-  <f-risk-info
+  <risk-info
     :asset-left="assetLeft"
     :asset-right="assetRight"
     impact="128 %"
@@ -15,7 +15,7 @@
     <template #activator="{ on }">
       <f-button color="warning" v-on="on">Swap</f-button>
     </template>
-  </f-risk-info>
+  </risk-info>
 </template>
 <script lang="ts">
   import Vue from 'vue'
@@ -44,16 +44,16 @@
 ### With Custom Text and Color
 ```vue
 <template>
-  <f-risk-info
+  <risk-info
     :custom-text="customText"
     :custom-color="customColor"
     impact="203.8%"
     :countdown="10"
   >
     <template #activator="{ on }">
-      <f-button color="warning" v-on="on">Pando</f-button>
+      <button v-on="on">Pando</button>
     </template>
-  </f-risk-info>
+  </risk-info>
 </template>
 <script lang="ts">
   import Vue from 'vue'
