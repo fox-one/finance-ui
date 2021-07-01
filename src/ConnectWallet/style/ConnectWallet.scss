@@ -1,0 +1,19 @@
+@import '../../styles/variable.scss';
+
+.#{$prefix}-connect-wallet {
+  &-text {
+    background-image: url('../../assets/images/svg/connect.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 12px;
+    cursor: pointer;
+  }
+}
+
+.theme--dark {
+  .#{$prefix}-connect-wallet {
+    &-text {
+      background-image: url('../../assets/images/svg/connect-dark.svg');
+    }
+  }
+}

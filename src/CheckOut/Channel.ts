@@ -3,7 +3,7 @@ import {
   Vue,
   Prop
 } from 'vue-property-decorator';
-import checkIcon from '@assets/images/common/check.svg';
+import checkIcon from '@assets/images/svg/check.svg';
 import { VListItem, VListItemAvatar, VListItemIcon, VListItemContent, VImg } from 'vuetify/lib';
 /* import types */
 import type { CreateElement, VNode } from 'vue';

@@ -1,0 +1,1 @@
+import './ConnectWallet.scss';

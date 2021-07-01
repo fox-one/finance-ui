@@ -10,7 +10,7 @@
   }
   &-title {
     padding-left: 28px;
-    background-image: url('../../assets/images/common/alert.svg');
+    background-image: url('../../assets/images/svg/alert.svg');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 24px;
@@ -44,7 +44,7 @@
 
   &-assets {
     width: 100%;
-    background-image: url('../../assets/images/common/divide-swap.svg');
+    background-image: url('../../assets/images/svg/divide-swap.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 8px 34px;
@@ -80,7 +80,7 @@
 .theme--dark {
   .#{$prefix}-risk-info {
     &-title {
-      background-image: url('../../assets/images/common/alert-dark.svg');
+      background-image: url('../../assets/images/svg/alert-dark.svg');
     }
 
     &-highlight {

@@ -8,6 +8,7 @@ export default {
     confirm: '確認',
     continue: '続ける',
     swap: 'スワップ',
+    connect_wallet: 'Connect Wallet',
     risk_info_confirm_title:
       'Confirm transaction',
     risk_info_confirm_content:

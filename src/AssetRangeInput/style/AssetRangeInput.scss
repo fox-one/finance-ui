@@ -8,13 +8,17 @@
       &-left {
         &-amount {
           padding-right: 16px;
-          background-image: url('../../assets/images/common/fill.svg');
+          background-image: url('../../assets/images/svg/fill.svg');
           background-repeat: no-repeat;
           background-position: right center;
           background-size: 12px;
           cursor: pointer;
         }
       }
+    }
+
+    &-error {
+      color: #F44C4C;
     }
   }
 
@@ -51,9 +55,13 @@
       &-tips {
         &-left {
           &-amount {
-            background-image: url('../../assets/images/common/fill-dark.svg');
+            background-image: url('../../assets/images/svg/fill-dark.svg');
           }
         }
+      }
+
+      &-error {
+        color: #F67070;
       }
     }
 

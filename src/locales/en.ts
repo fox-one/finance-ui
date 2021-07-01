@@ -8,6 +8,7 @@ export default {
     confirm: 'Confirm',
     continue: 'Continue',
     swap: 'Swap',
+    connect_wallet: 'Connect Wallet',
     risk_info_confirm_title:
       'Confirm transaction',
     risk_info_confirm_content:

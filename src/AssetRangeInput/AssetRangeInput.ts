@@ -39,6 +39,7 @@ export class AssetRangeInput extends Vue {
     tipLeft?: string;
     tipRight: string;
   }
+  @Prop({ type: [String, Function], default: '' }) private error!: string | ((value: number | string) => string | VNode) | VNode;
 
   @Prop({ type: String, default: 'Ratio' }) private ratioText!: string;
   @Prop({ type: String, default: 'Confirm' }) private btnText!: string;
@@ -107,7 +108,7 @@ export class AssetRangeInput extends Vue {
             staticClass: classes('top')
           },
           [
-            // FAssetAmountInput
+            // asset input
             h(
               FAssetAmountInput,
               {
@@ -188,7 +189,17 @@ export class AssetRangeInput extends Vue {
                   [this.inputTips.tipRight]
                 ) : null
               ]
-            )
+            ),
+            // error
+            this.error ? h(
+              'div',
+              {
+                staticClass: classes('top-error', 'f-caption mt-2')
+              },
+              [
+                typeof this.error === 'function' ? this.error(this._value_input) : this.error
+              ]
+            ) : null
           ]
         ),
         // slider sction

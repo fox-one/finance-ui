@@ -3,6 +3,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
 import { AssetRangeInput } from '../';
 import { RiskSlider } from '../../RiskSlider';
+import { ConnectWallet } from '../../ConnectWallet';
 import '../style';
 
 const asset = {
@@ -88,6 +89,40 @@ storiesOf('AssetRangeInput', module)
       color="black"
     />`
   }))
+  .add('With Error', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        amount: 50,
+        amountSymbol: 'CNB',
+        tipLeft: 'Collateral',
+        tipRight: '≈ $ 6456.54',
+      },
+      amount: 30.21
+    }),
+    methods: {
+      onInput() {
+        console.log('this.amount', (this as any).amount);
+      },
+      getErrMsg(val) {
+        return `I'm a error message, now the value is ${val}`;
+      }
+    },
+    template: `<asset-range-input
+      v-model="amount"
+      @input="onInput"
+      :max="max"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      :error="getErrMsg"
+      color="black"
+    />`
+  }))
   .add('Exceed Max', () => ({
     components: {
       AssetRangeInput
@@ -111,6 +146,37 @@ storiesOf('AssetRangeInput', module)
     template: `<asset-range-input
       v-model="amount"
       @error:limit="onErr"
+      :max="max"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      color="black"
+    />`
+  }))
+  .add('With Connect Wallet', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        tipLeft: ''
+      },
+      amount: 30.21
+    }),
+    created() {
+      const self = this as any;
+      self.$set(self.inputTips, 'tipLeft', self.$createElement(ConnectWallet))
+    },
+    methods: {
+      onInput() {
+        console.log('this.amount', (this as any).amount);
+      }
+    },
+    template: `<asset-range-input
+      v-model="amount"
+      @input="onInput"
       :max="max"
       :inputTips="inputTips"
       :asset="asset"
