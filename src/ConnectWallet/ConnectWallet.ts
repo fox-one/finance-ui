@@ -4,14 +4,13 @@ import {
   Prop
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
-import { $t } from '@utils/t';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
 @Component
 export class ConnectWallet extends Vue {
   @Prop({ type: String, default: '' }) private className!: string;
-  @Prop({ type: String, default: '' }) private text!: string;
+  @Prop({ type: [String, Object], default: 'Connect Wallet' }) private text!: string | VNode;
 
   public render(h: CreateElement): VNode {
     const classes = classnames('connect-wallet');
@@ -30,7 +29,7 @@ export class ConnectWallet extends Vue {
               ...this.$listeners
             }
           },
-          [this.text || $t(this, 'connect_wallet')]
+          [this.text]
         )
       ]
     );

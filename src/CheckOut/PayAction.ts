@@ -3,7 +3,6 @@ import {
   Vue,
   Prop
 } from 'vue-property-decorator';
-import { $t } from '@utils/t';
 import { FButton } from '@foxone/uikit/src/components/FButton';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
@@ -11,6 +10,7 @@ import type { CreateElement, VNode } from 'vue';
 @Component
 export class PayAction extends Vue {
   @Prop({ type: Function, default: () => { } }) private onPay!: () => any;
+  @Prop({ type: String, default: 'Pay' }) private text!: string;
 
   private loading = false;
 
@@ -49,7 +49,7 @@ export class PayAction extends Vue {
               click: () => this.handlePay()
             }
           },
-          $t(this, 'pay')
+          this.text
         )
       ]
     );

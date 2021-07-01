@@ -6,7 +6,6 @@ import {
   Model
 } from 'vue-property-decorator';
 import classnames from '@utils/classnames';
-import { $t } from '@utils/t';
 import { VDialog, VCard, VCardText, VCardActions, VCardTitle } from 'vuetify/lib';
 import { FButton } from '@foxone/uikit/src/components/FButton';
 /* import types */
@@ -159,7 +158,11 @@ export class RiskInfo extends Vue {
                   {
                     staticClass: classes('title', 'f-greyscale-1 f-title-1')
                   },
-                  [customContinueText.title || $t(this, this.isContinue ? 'risk_info_confirm_title' : 'warning')]
+                  [
+                    this.isContinue
+                      ? customContinueText.title || 'Confirm transaction'
+                      : customConfirmText.title || 'Warning'
+                  ]
                 )
               ]
             ),
@@ -181,7 +184,7 @@ export class RiskInfo extends Vue {
                         {
                           staticClass: 'text-center f-body-1'
                         },
-                        [customConfirmText.content || $t(this, 'risk_info_confirm_content')]
+                        [customConfirmText.content || 'Once the transaction is executed, it is irrevocable, please pay after confirmation carefully.']
                       )
                     ]
                   )
@@ -306,7 +309,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        customConfirmText?.btn_cancel || $t(this, 'cancel')
+                        customConfirmText?.btn_cancel || 'Cancel'
                       ),
                       h(
                         FButton,
@@ -325,7 +328,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        customConfirmText?.btn_confirm || $t(this, 'confirm')
+                        customConfirmText?.btn_confirm || 'Confirm'
                       )
                     ]
                   )
@@ -350,7 +353,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        customContinueText?.btn_cancel || $t(this, 'cancel')
+                        customContinueText?.btn_cancel || 'Cancel'
                       ),
                       h(
                         FButton,
@@ -370,7 +373,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        `${customContinueText?.btn_continue || $t(this, 'continue')}${this._countdown > 0 ? `(${this._countdown}s)` : ''}`.trim()
+                        `${customContinueText?.btn_continue || 'Continue'}${this._countdown > 0 ? `(${this._countdown}s)` : ''}`.trim()
                       )
                     ]
                   )
