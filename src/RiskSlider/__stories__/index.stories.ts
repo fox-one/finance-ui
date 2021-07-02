@@ -22,11 +22,11 @@ storiesOf('RiskSlider', module)
       RiskSlider
     },
     data: () => ({
-      precent: 74.5,
+      percent: 74.5,
       tips: {
         tip: 'Collateralization Ration reach',
         highlight: '182.5%, it’s in Mid-risk now.'
       }
     }),
-    template: `<risk-slider v-model="precent" :tips="tips" />`
+    template: `<risk-slider v-model="percent" :tips="tips" />`
   }));

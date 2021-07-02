@@ -5,7 +5,7 @@
 ```vue
 <template>
   <risk-slider
-    v-model="precent"
+    v-model="percent"
     :tips="tips"
     :scale="scale"
     ref="slider"
@@ -17,7 +17,7 @@
 
   @Component
   export class App extends Vue {
-    precent = 30;
+    percent = 30;
     tips = {
       tip: 'Collateralization Ration reach',
       highlight: `${(30.21 / 50 * 100).toFixed(2)}%, it’s in low-risk now.`

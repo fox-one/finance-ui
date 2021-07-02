@@ -44,6 +44,7 @@ export class AssetRangeInput extends Vue {
 
   @Prop({ type: String, default: 'Ratio' }) private ratioText!: string;
   @Prop({ type: Boolean, default: void 0 }) private disabledSlider!: boolean;
+  @Prop({ type: Boolean, default: true }) private showSlider!: boolean;
 
   @Prop({ type: String, default: 'Confirm' }) private btnText!: string;
   @Prop({ type: Boolean, default: void 0 }) private disabledBtn!: boolean;
@@ -213,10 +214,10 @@ export class AssetRangeInput extends Vue {
           ]
         ),
         // slider sction
-        h(
+        this.showSlider ? h(
           'div',
           {
-            staticClass: classes('mid')
+            staticClass: classes('mid', 'mb-8')
           },
           slider ?? [
             h(
@@ -272,12 +273,12 @@ export class AssetRangeInput extends Vue {
               }
             )
           ]
-        ),
+        ) : null,
         // btn section
         btn ?? h(
           FButton,
           {
-            staticClass: 'mt-8 px-8 py-4',
+            staticClass: 'px-8 py-4',
             props: {
               color: this.color
             },

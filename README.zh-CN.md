@@ -85,7 +85,7 @@ Vue.use(FinanceUI);
   <div>
     风险滑条
     <risk-slider
-      v-model="precent"
+      v-model="percent"
       :tips="tips"
       :scale="scale"
       ref="slider"
@@ -104,7 +104,7 @@ Vue.use(FinanceUI);
     }
   )
   export default class App extends Vue {
-    precent = 30;
+    percent = 30;
     tips = {
       tip: 'Collateralization Ration reach',
       highlight: `${(30.21 / 50 * 100).toFixed(2)}%, it’s in low-risk now.`

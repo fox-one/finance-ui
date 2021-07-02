@@ -226,7 +226,7 @@ storiesOf('AssetRangeInput', module)
         tipLeft: 'Collateral',
         tipRight: '≈ $ 6456.54',
       },
-      precent: 30.21 / 50 * 100,
+      percent: 30.21 / 50 * 100,
       tips: {
         tip: 'Collateralization Ration reach',
         highlight: `${(30.21 / 50 * 100).toFixed(2)}%, it’s in low-risk now.`
@@ -242,10 +242,10 @@ storiesOf('AssetRangeInput', module)
         const self = this as any;
         const amount = self.amount;
         const max = self.max;
-        self.precent = amount / max * 100;
+        self.percent = amount / max * 100;
         self.$nextTick(() => {
           const slider = self.$refs.slider;
-          self.$set(self.tips, 'highlight', `${self.precent.toFixed(2)}%, it’s in ${slider.currentScale}-risk now.`)
+          self.$set(self.tips, 'highlight', `${self.percent.toFixed(2)}%, it’s in ${slider.currentScale}-risk now.`)
         })
       }
     },
@@ -260,11 +260,35 @@ storiesOf('AssetRangeInput', module)
     >
       <template v-slot:slider>
         <risk-slider
-          v-model="precent"
+          v-model="percent"
           :tips="tips"
           :scale="scale"
           ref="slider"
         />
       </template>
     </asset-range-input>`
+  }))
+  .add('Without Slider', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        amount: 36,
+        amountSymbol: 'CNB',
+        tipLeft: 'Collateral',
+        tipRight: '≈ $ 16456.54',
+      },
+      amount: 12.21
+    }),
+    template: `<asset-range-input
+      v-model="amount"
+      :show-slider="false"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      color="black"
+    />`
   }));
