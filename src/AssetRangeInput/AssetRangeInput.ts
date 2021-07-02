@@ -93,6 +93,8 @@ export class AssetRangeInput extends Vue {
   public render(h: CreateElement): VNode {
     const btn = this.$slots.button;
     const slider = this.$slots.slider;
+    const inputTips = this.$slots.inputTips;
+    const sliderTips = this.$slots.sliderTips;
     const activator = this.$scopedSlots.activator;
     const classes = classnames('asset-range-input');
     return h(
@@ -145,7 +147,7 @@ export class AssetRangeInput extends Vue {
               }
             ),
             // tips
-            h(
+            inputTips ?? h(
               VLayout,
               {
                 staticClass: classes('top-tips', 'mt-2 f-greyscale-3 f-caption'),
@@ -213,14 +215,14 @@ export class AssetRangeInput extends Vue {
             )
           ]
         ),
-        // slider sction
+        // slider section
         this.showSlider ? h(
           'div',
           {
             staticClass: classes('mid', 'mb-8')
           },
           slider ?? [
-            h(
+            sliderTips ?? h(
               VLayout,
               {
                 staticClass: classes('mid-tips', 'mb-5 f-greyscale-3 f-body-2'),

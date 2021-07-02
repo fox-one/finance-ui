@@ -182,34 +182,25 @@ storiesOf('AssetRangeInput', module)
   }))
   .add('With Connect Wallet', () => ({
     components: {
-      AssetRangeInput
+      AssetRangeInput,
+      ConnectWallet
     },
     data: () => ({
       max: 50,
       asset,
-      inputTips: {
-        tipLeft: ''
-      },
       amount: 30.21
     }),
-    created() {
-      const self = this as any;
-      self.$set(self.inputTips, 'tipLeft', self.$createElement(ConnectWallet))
-    },
-    methods: {
-      onInput() {
-        console.log('this.amount', (this as any).amount);
-      }
-    },
     template: `<asset-range-input
       v-model="amount"
-      @input="onInput"
       :max="max"
-      :inputTips="inputTips"
       :asset="asset"
       :selectable="false"
       color="black"
-    />`
+    >
+      <template v-slot:inputTips>
+        <connect-wallet />
+      </template>
+    </asset-range-input>`
   }))
   .add('With RiskSlider', () => ({
     components: {
