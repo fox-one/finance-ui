@@ -160,8 +160,8 @@ export class RiskInfo extends Vue {
                   },
                   [
                     this.isContinue
-                      ? customContinueText.title || 'Confirm transaction'
-                      : customConfirmText.title || 'Warning'
+                      ? customConfirmText.title || 'Warning'
+                      : customContinueText.title || 'Confirm transaction'
                   ]
                 )
               ]

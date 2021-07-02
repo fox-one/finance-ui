@@ -35,7 +35,7 @@ storiesOf('RiskInfo', module)
       <h3 class="mb-4">开始交易 {{assetLeft.symbol}}</h3>
       <p>BTC: 1</p>
       <p>USDT: 100000</p>
-      <RiskInfo
+      <risk-info
         :asset-left="assetLeft"
         :asset-right="assetRight"
         impact="128 %"
@@ -44,7 +44,7 @@ storiesOf('RiskInfo', module)
         <template #activator="{ on }">
           <f-button color="warning" v-on="on">Activator</f-button>
         </template>
-      </RiskInfo>
+      </risk-info>
     </f-panel>`
   }))
   .add('Usage with V-Model', () => ({
@@ -66,7 +66,7 @@ storiesOf('RiskInfo', module)
       <h3 class="mb-4">开始交易 {{assetLeft.symbol}}</h3>
       <p>BTC: 1</p>
       <p>USDT: 100000</p>
-      <RiskInfo
+      <risk-info
         v-model="isShow"
         :asset-left="assetLeft"
         :asset-right="assetRight"
@@ -98,7 +98,7 @@ storiesOf('RiskInfo', module)
       <h3 class="mb-4">开始交易 {{assetLeft.symbol}}</h3>
       <p>BTC: 1</p>
       <p>USDT: 100000</p>
-      <RiskInfo
+      <risk-info
         :asset-left="assetLeft"
         :asset-right="assetRight"
         impact="128 %"
@@ -110,7 +110,7 @@ storiesOf('RiskInfo', module)
         <template #activator="{ on }">
           <f-button color="warning" v-on="on">Swap</f-button>
         </template>
-      </RiskInfo>
+      </risk-info>
     </f-panel>`
   }))
   .add('With Pando-Leaf Style', () => ({
@@ -134,7 +134,7 @@ storiesOf('RiskInfo', module)
       <h3 class="mb-4">开始交易 Pando</h3>
       <p>BTC: 1</p>
       <p>USDT: 100000</p>
-      <RiskInfo
+      <risk-info
         :custom-text="customText"
         :custom-color="customColor"
         impact="203.8%"
@@ -143,6 +143,6 @@ storiesOf('RiskInfo', module)
         <template #activator="{ on }">
           <f-button color="warning" v-on="on">Pando</f-button>
         </template>
-      </RiskInfo>
+      </risk-info>
     </f-panel>`
   }));
