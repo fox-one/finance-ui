@@ -100,6 +100,11 @@ export class RiskInfo extends Vue {
     this.isShow = val;
   }
 
+  @Watch('countdown')
+  public handleCountdownChange(val: number) {
+    this.count = val;
+  }
+
   public created() {
     this.isShow = this.value;
     this.count = this.countdown;
