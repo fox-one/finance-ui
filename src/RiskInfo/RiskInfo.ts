@@ -58,7 +58,7 @@ export class RiskInfo extends Vue {
   private isContinue = false;
   private isShow = false;
   private timer: null | ReturnType<typeof setTimeout> = null;
-  private count = 0;
+  private count;
 
   private get hasAssets() {
     let res = false;
@@ -70,17 +70,15 @@ export class RiskInfo extends Vue {
     return res;
   }
 
-  private get _countdown() {
-    return this.count;
-  }
-
   private onCountDown() {
+    if (this.count === void 0) this.count = this.countdown;
     if (this.count <= 0) {
       this.timer = null;
       return;
     }
     this.timer = setTimeout(() => {
       this.count--;
+      this.$nextTick(() => this.$forceUpdate());
       this.onCountDown();
     }, 1000);
   }
@@ -91,7 +89,7 @@ export class RiskInfo extends Vue {
         clearTimeout(this.timer);
         this.timer = null;
       }
-      this.count = this.countdown;
+      this.count = void 0;
     }, 300);
   }
 
@@ -100,14 +98,8 @@ export class RiskInfo extends Vue {
     this.isShow = val;
   }
 
-  @Watch('countdown')
-  public handleCountdownChange(val: number) {
-    this.count = val;
-  }
-
   public created() {
     this.isShow = this.value;
-    this.count = this.countdown;
   }
 
   public beforeDestroy() {
@@ -365,7 +357,7 @@ export class RiskInfo extends Vue {
                         {
                           staticClass: classes('action-continue-btn-continue', 'py-8'),
                           attrs: {
-                            disabled: this._countdown > 0
+                            disabled: this.count > 0
                           },
                           props: {
                             type: 'text',
@@ -378,7 +370,7 @@ export class RiskInfo extends Vue {
                             }
                           }
                         },
-                        `${customContinueText?.btn_continue || 'Continue'}${this._countdown > 0 ? `(${this._countdown}s)` : ''}`.trim()
+                        `${customContinueText?.btn_continue || 'Continue'}${this.count > 0 ? `(${this.count}s)` : ''}`.trim()
                       )
                     ]
                   )
