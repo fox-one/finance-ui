@@ -12,6 +12,8 @@ import type { CreateElement, VNode } from 'vue';
 // avoid typescript error
 const VueSlider = require('vue-slider-component');
 
+export type SCALE = 'low' | 'mid' | 'high';
+
 @Component
 export class RiskSlider extends Vue {
   @Model('change', { type: [String, Number], default: '' }) public readonly value!: string | number;
@@ -55,13 +57,19 @@ export class RiskSlider extends Vue {
 
   public get currentScale() {
     const val = +this.value / 100;
-    if (val <= this.scale.low) {
+    if (val <= this.getScaleRatio('low')) {
       return 'low';
-    } else if (val <= (this.scale.low + this.scale.mid)) {
+    } else if (val <= (this.getScaleRatio('low') + this.getScaleRatio('mid'))) {
       return 'mid';
     } else {
       return 'high';
     }
+  }
+
+  public getScaleRatio (scale: SCALE) {
+    const { low, mid, high } = this.scale;
+    const total = low + mid + high;
+    return this.scale[scale] / total;
   }
 
   public render(h: CreateElement): VNode {
@@ -88,7 +96,7 @@ export class RiskSlider extends Vue {
               tooltip: 'none',
               disabled: this.disabled,
               railStyle: {
-                'background': `linear-gradient(to right, ${color.low} 0% ${this.scale.low * 100}%, ${color.mid} ${this.scale.low * 100}% ${(this.scale.low + this.scale.mid) * 100}%, ${color.high} ${(this.scale.low + this.scale.mid) * 100}% 100%)`
+                'background': `linear-gradient(to right, ${color.low} 0% ${this.getScaleRatio('low') * 100}%, ${color.mid} ${this.getScaleRatio('low') * 100}% ${(this.getScaleRatio('low') + this.getScaleRatio('mid')) * 100}%, ${color.high} ${(this.getScaleRatio('low') + this.getScaleRatio('mid')) * 100}% 100%)`
               }
             }
           }

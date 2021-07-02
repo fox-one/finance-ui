@@ -232,9 +232,9 @@ storiesOf('AssetRangeInput', module)
         highlight: `${(30.21 / 50 * 100).toFixed(2)}%, it’s in low-risk now.`
       },
       scale: {
-        low: 0.65,
-        mid: 0.2,
-        high: 0.15
+        low: 65,
+        mid: 20,
+        high: 15
       }
     }),
     methods: {
