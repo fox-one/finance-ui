@@ -282,4 +282,29 @@ storiesOf('AssetRangeInput', module)
       :selectable="false"
       color="black"
     />`
+  }))
+  .add('Without Slider & Button', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 20,
+      asset,
+      inputTips: {
+        amount: 16,
+        amountSymbol: 'CNB',
+        tipLeft: 'Debt',
+        tipRight: '≈ $ 16.54',
+      },
+      amount: 2.21
+    }),
+    template: `<asset-range-input
+      v-model="amount"
+      :show-slider="false"
+      :show-btn="false"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      color="black"
+    />`
   }));

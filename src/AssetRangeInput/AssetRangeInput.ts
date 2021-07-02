@@ -48,6 +48,7 @@ export class AssetRangeInput extends Vue {
 
   @Prop({ type: String, default: 'Confirm' }) private btnText!: string;
   @Prop({ type: Boolean, default: void 0 }) private disabledBtn!: boolean;
+  @Prop({ type: Boolean, default: true }) private showBtn!: boolean;
 
   private _value_input: string | number = '';
   private _value_slider: string | number = 0;
@@ -277,7 +278,7 @@ export class AssetRangeInput extends Vue {
           ]
         ) : null,
         // btn section
-        btn ?? h(
+        this.showBtn ? btn ?? h(
           FButton,
           {
             staticClass: 'px-8 py-4',
@@ -294,7 +295,7 @@ export class AssetRangeInput extends Vue {
             }
           },
           this.btnText
-        )
+        ) : null
       ]
     );
   }
