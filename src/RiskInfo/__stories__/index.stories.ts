@@ -71,6 +71,7 @@ storiesOf('RiskInfo', module)
         :asset-left="assetLeft"
         :asset-right="assetRight"
         impact="286 %"
+        :countdown="2"
       />
       <f-button color="pink" @click="isShow = true" class="f-greyscale-6" >Model</f-button>
     </f-panel>`

@@ -96,6 +96,7 @@ export class RiskInfo extends Vue {
   @Watch('value')
   public handleValueChange(val: boolean) {
     this.isShow = val;
+    if (val && this.timer === null) this.onCountDown();
   }
 
   public created() {
