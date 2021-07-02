@@ -123,6 +123,33 @@ storiesOf('AssetRangeInput', module)
       color="black"
     />`
   }))
+  .add('With Disabled', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        amount: 42.67,
+        amountSymbol: 'CNB',
+        tipLeft: 'Collateral',
+        tipRight: '≈ $ 16456.54',
+      },
+      amount: 33.05
+    }),
+    template: `<asset-range-input
+      v-model="amount"
+      :disabled-input="true"
+      :disabled-btn="true"
+      :disabled-slider="true"
+      :max="max"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      color="black"
+    />`
+  }))
   .add('Exceed Max', () => ({
     components: {
       AssetRangeInput

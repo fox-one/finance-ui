@@ -28,6 +28,7 @@ export class AssetRangeInput extends Vue {
   @Prop({ type: String, default: '' }) private className!: string;
   @Prop({ type: String, default: 'primary' }) private color!: string;
 
+  @Prop({ type: Boolean, default: void 0 }) private disabledInput!: boolean;
   @Prop({ type: Boolean, default: true }) private selectable!: boolean;
   @Prop({ type: Boolean, default: false }) private border!: boolean;
   @Prop({ type: Boolean, default: false }) private loading!: boolean;
@@ -42,7 +43,10 @@ export class AssetRangeInput extends Vue {
   @Prop({ type: [String, Function], default: '' }) private error!: string | ((value: number | string) => string | VNode) | VNode;
 
   @Prop({ type: String, default: 'Ratio' }) private ratioText!: string;
+  @Prop({ type: Boolean, default: void 0 }) private disabledSlider!: boolean;
+
   @Prop({ type: String, default: 'Confirm' }) private btnText!: string;
+  @Prop({ type: Boolean, default: void 0 }) private disabledBtn!: boolean;
 
   private _value_input: string | number = '';
   private _value_slider: string | number = 0;
@@ -121,7 +125,8 @@ export class AssetRangeInput extends Vue {
                   loading: this.loading,
                 },
                 attrs: {
-                  ...this.$attrs
+                  ...this.$attrs,
+                  disabled: this.disabledInput
                 },
                 on: {
                   ...this.$listeners,
@@ -194,19 +199,24 @@ export class AssetRangeInput extends Vue {
             this.error ? h(
               'div',
               {
-                staticClass: classes('top-error', 'f-caption mt-2')
+                staticClass: classes('top-error', 'f-caption pt-2')
               },
               [
                 typeof this.error === 'function' ? this.error(this._value_input) : this.error
               ]
-            ) : null
+            ) : h(
+              'div',
+              {
+                staticClass: classes('top-error-placeholder')
+              }
+            )
           ]
         ),
         // slider sction
         h(
           'div',
           {
-            staticClass: classes('mid', 'my-8')
+            staticClass: classes('mid')
           },
           slider ?? [
             h(
@@ -243,7 +253,8 @@ export class AssetRangeInput extends Vue {
                   interval: 0.01,
                   lazy: true,
                   tooltip: 'none',
-                  contained: true
+                  contained: true,
+                  disabled: this.disabledSlider
                 },
                 on: {
                   change: val => {
@@ -266,13 +277,12 @@ export class AssetRangeInput extends Vue {
         btn ?? h(
           FButton,
           {
-            staticClass: 'px-8 py-4',
+            staticClass: 'mt-8 px-8 py-4',
             props: {
-              color: this.color,
-
+              color: this.color
             },
             attrs: {
-              disabled: !this.isInRange(+this._value_input)
+              disabled: this.disabledBtn !== void 0 ? this.disabledBtn : !this.isInRange(+this._value_input)
             },
             on: {
               click: () => {

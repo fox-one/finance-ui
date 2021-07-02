@@ -32,9 +32,6 @@ import Uikit from '@foxone/uikit';
 import zh from 'vuetify/es5/locale/zh-Hans';
 import en from 'vuetify/es5/locale/en';
 import ja from 'vuetify/es5/locale/ja';
-import enFinance from '../src/locales/en';
-import jaFinance from '../src/locales/ja';
-import zhFinance from '../src/locales/zh';
 import enUikit from '@foxone/uikit/src/locales/en';
 import jaUikit from "@foxone/uikit/src/locales/ja";
 import zhUikit from "@foxone/uikit/src/locales/zh-Hans";
@@ -152,18 +149,15 @@ export default function () {
       locales: {
         zh: {
           ...zh,
-          ...zhUikit,
-          ...zhFinance,
+          ...zhUikit
         },
         en: {
           ...en,
-          ...enUikit,
-          ...enFinance,
+          ...enUikit
         },
         ja: {
           ...ja,
-          ...jaUikit,
-          ...jaFinance,
+          ...jaUikit
         },
       },
     },
