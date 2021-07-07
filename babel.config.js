@@ -5,23 +5,16 @@ module.exports = function (api) {
   const presets = [
     '@babel/preset-env',
     'babel-preset-vue',
+    ['@vue/babel-preset-jsx', { compositionAPI: true }],
     '@babel/preset-typescript'
   ];
 
   const plugins = [
     '@babel/plugin-transform-runtime',
-    ['@babel/proposal-decorators', {
-      legacy: true
-    }],
-    ['@babel/proposal-class-properties', {
-      loose: true
-    }],
-    ['@babel/plugin-proposal-private-property-in-object', {
-      loose: true
-    }],
-    ['@babel/plugin-proposal-private-methods', {
-      loose: true
-    }]
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
+    ['@babel/plugin-proposal-private-methods', { loose: true }]
   ];
 
   const env = {

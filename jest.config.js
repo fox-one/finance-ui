@@ -7,18 +7,20 @@ module.exports = {
 
   moduleFileExtensions: [
     'js',
+    'jsx',
     'json',
     'ts',
+    'tsx',
     'vue'
   ],
 
   roots: ['<rootDir>/src'],
 
   testRegex:
-    '(test|__test__)/.*.test.(vue|ts|js)?$',
+    '(test|__test__)/.*.test.(vue|ts|tsx|js|jsx)?$',
 
   transform: {
-    '^.+.ts$': 'ts-jest',
+    '^.+.tsx?$': 'babel-jest',
     '^.+.vue$': 'vue-jest',
     '^.+\\.svg$': 'jest-svg-transformer'
   },
@@ -35,6 +37,7 @@ module.exports = {
 
   transformIgnorePatterns: [
     '/node_modules/(?!(vuetify)/)/',
-    '/node_modules/(?!(@foxone/uikit)/)/'
+    '/node_modules/(?!(@foxone/uikit)/)/',
+    '/node_modules/(?!(@vue/composition-api)/)/'
   ]
 };

@@ -1,5 +1,8 @@
-import ConnectWallet from './ConnectWallet';
+import ConnectWallet from './ConnectWallet.tsx';
+import type { VueConstructor } from 'vue';
 
-export { ConnectWallet } from './ConnectWallet';
+ConnectWallet.install = (app: VueConstructor<Vue>): void => {
+  app.component(ConnectWallet.name, ConnectWallet);
+};
 
 export default ConnectWallet;

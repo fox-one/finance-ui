@@ -3,7 +3,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
 import { AssetRangeInput } from '../';
 import { RiskSlider } from '../../RiskSlider';
-import { ConnectWallet } from '../../ConnectWallet';
+import ConnectWallet from '../../ConnectWallet';
 import '../style';
 
 const asset = {

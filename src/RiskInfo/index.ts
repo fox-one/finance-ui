@@ -1,5 +1,8 @@
-import RiskInfo from './RiskInfo';
+import RiskInfo from './RiskInfo.tsx';
+import type { VueConstructor } from 'vue';
 
-export { RiskInfo } from './RiskInfo';
+RiskInfo.install = (app: VueConstructor<Vue>): void => {
+  app.component(RiskInfo.name, RiskInfo);
+};
 
 export default RiskInfo;
