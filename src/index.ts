@@ -1,3 +1,4 @@
+import VueCompositionAPI from '@vue/composition-api';
 import AssetRangeInput from './AssetRangeInput';
 import CheckOut from './CheckOut';
 import ConnectWallet from './ConnectWallet';
@@ -10,6 +11,7 @@ install.installed = false;
 function install(Vue: VueConstructor<Vue>) {
   if (install.installed) return;
   install.installed = true;
+  Vue.use(VueCompositionAPI);
   Vue.component('AssetRangeInput', AssetRangeInput);
   Vue.component('CheckOut', CheckOut);
   Vue.component('ConnectWallet', ConnectWallet);
