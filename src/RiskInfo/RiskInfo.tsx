@@ -82,6 +82,33 @@ export default defineComponent({
       default: () => ({ continue: {}, confirm: {} })
     }
   },
+  setup(props) {
+    const classes = classnames('risk-info');
+    const isContinue = false;
+    const isShow = false;
+    const timer = null as null | ReturnType<typeof setTimeout>;
+    const count = void 0 as undefined | number;
+    const customContinueText = props.customText.continue ?? {};
+    const customConfirmText = props.customText.confirm ?? {};
+    const customContinueColor = props.customColor.continue ?? {};
+    const customConfirmColor = props.customColor.confirm ?? {};
+
+    onMounted(() => {
+      console.info('RiskInfo mounted!');
+    });
+
+    return {
+      classes,
+      isContinue,
+      isShow,
+      timer,
+      count,
+      customContinueText,
+      customConfirmText,
+      customContinueColor,
+      customConfirmColor
+    };
+  },
   computed: {
     hasAssets (): boolean {
       let res = false;
@@ -91,6 +118,21 @@ export default defineComponent({
         res = false;
       }
       return res;
+    }
+  },
+  watch: {
+    value: function (val: boolean) {
+      this.isShow = val;
+      if (val && this.timer === null) this.onCountDown();
+    }
+  },
+  created() {
+    this.isShow = this.value;
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
     }
   },
   methods: {
@@ -137,52 +179,10 @@ export default defineComponent({
       setTimeout(() => (this.isContinue = false), 300);
     },
   },
-  watch: {
-    value: function (val: boolean) {
-      this.isShow = val;
-      if (val && this.timer === null) this.onCountDown();
-    }
-  },
-  setup(props) {
-    const classes = classnames('risk-info');
-    const isContinue = false;
-    const isShow = false;
-    const timer = null as null | ReturnType<typeof setTimeout>;
-    const count = void 0 as undefined | number;
-    const customContinueText = props.customText.continue ?? {};
-    const customConfirmText = props.customText.confirm ?? {};
-    const customContinueColor = props.customColor.continue ?? {};
-    const customConfirmColor = props.customColor.confirm ?? {};
-
-    onMounted(() => {
-      console.info('RiskInfo mounted!');
-    });
-
-    return {
-      classes,
-      isContinue,
-      isShow,
-      timer,
-      count,
-      customContinueText,
-      customConfirmText,
-      customContinueColor,
-      customConfirmColor
-    };
-  },
-  created() {
-    this.isShow = this.value;
-  },
-  beforeDestroy() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-  },
   render(h: CreateElement): VNode {
     const scopedSlots = {
       activator: this.$scopedSlots.activator
-    }
+    };
 
     return (
       <VDialog
