@@ -1,7 +1,12 @@
-import RiskInfo from './RiskInfo.tsx';
+import RiskInfo from './RiskInfo';
+import type { defineComponent } from '@vue/composition-api';
 import type { VueConstructor } from 'vue';
 
-RiskInfo.install = (app: VueConstructor<Vue>): void => {
+export type RiskInfo = ReturnType<typeof defineComponent> & {
+  install(app: VueConstructor<Vue>): void
+}
+
+(RiskInfo as RiskInfo).install = (app: VueConstructor<Vue>): void => {
   app.component(RiskInfo.name, RiskInfo);
 };
 
