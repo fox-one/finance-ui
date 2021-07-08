@@ -130,7 +130,7 @@ export default defineComponent({
     return {
       _value_input,
       _value_slider
-    }
+    };
   },
 
   computed: {

@@ -30,6 +30,7 @@ module.exports = {
   ],
   rules: {
     'vue/html-indent': ['warn', 2],
+    'vue/no-reserved-keys': ['warn'],
     'vue/html-self-closing': [
       'warn',
       {
