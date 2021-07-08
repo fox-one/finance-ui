@@ -7,7 +7,7 @@ export type RiskInfo = ReturnType<typeof defineComponent> & {
 }
 
 (RiskInfo as RiskInfo).install = (app: VueConstructor<Vue>): void => {
-  app.component(RiskInfo.name, RiskInfo);
+  if (RiskInfo.name) app.component(RiskInfo.name, RiskInfo);
 };
 
 export default RiskInfo;

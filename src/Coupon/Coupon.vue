@@ -11,7 +11,14 @@ import {
   onMounted
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
-// import type { Coupon } from './type';
+
+export interface Coupon {
+  type: 'DISCOUNT' | 'VOUCHER';
+  amount: number;
+  name: string;
+  expired_at: string | number;
+  [props: string]: any;
+}
 
 export default defineComponent({
   name: 'Coupon',

@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import { RiskSlider } from '../';
+import RiskSlider from '../';
 import '../style';
 
 storiesOf('RiskSlider', module)

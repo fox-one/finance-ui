@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import { AssetRangeInput } from '../';
-import { RiskSlider } from '../../RiskSlider';
+import AssetRangeInput from '../';
+import RiskSlider from '../../RiskSlider';
 import ConnectWallet from '../../ConnectWallet';
 import '../style';
 

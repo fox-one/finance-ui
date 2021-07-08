@@ -6,7 +6,8 @@ module.exports = function (api) {
     '@babel/preset-env',
     'babel-preset-vue',
     ['@vue/babel-preset-jsx', { compositionAPI: true }],
-    '@babel/preset-typescript'
+    '@babel/preset-typescript',
+    'babel-preset-typescript-vue3'
   ];
 
   const plugins = [

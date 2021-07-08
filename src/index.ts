@@ -14,8 +14,8 @@ function install(Vue: VueConstructor<Vue>) {
   Vue.use(VueCompositionAPI);
   Vue.component('AssetRangeInput', AssetRangeInput);
   Vue.component('CheckOut', CheckOut);
-  Vue.component('ConnectWallet', ConnectWallet);
-  Vue.component('RiskInfo', RiskInfo);
+  Vue.component(ConnectWallet.name, ConnectWallet);
+  Vue.component(RiskInfo.name, RiskInfo);
   Vue.component('RiskSlider', RiskSlider);
 }
 
