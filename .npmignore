@@ -8,16 +8,18 @@ build
 src
 *test*
 node_modules
-.omni_cache
 .storybook
 demo
 server
 dist-*
+DEV*.md
 
 # config files
 .eslintignore
 .eslintrc.js
 .gitignore
+.editorconfig
+.prettierignore
 *.config.js
 *.conf.js
 tsconfig.json
