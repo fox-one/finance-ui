@@ -2058,10 +2058,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@omni-door/cli@^2.5.3":
-  version "2.5.3"
-  resolved "https://registry.npmjs.org/@omni-door/cli/-/cli-2.5.3.tgz#48c3e83a1945432c1d818a8088a86fcdf003ddda"
-  integrity sha512-HsZixxpw401zo5OAoCgUB2qxhEyR5sv23ltQe5iEBYeFMCepe9pJvpYIUQ1+P18dRXiJRGav40FCqTx8PlP+Ow==
+"@omni-door/cli@^2.5.5":
+  version "2.5.5"
+  resolved "https://registry.npmjs.org/@omni-door/cli/-/cli-2.5.5.tgz#75016beb36525fadafab72c9fff2031917d5c4b8"
+  integrity sha512-PABuR7GV2hmsr6uGUjRdY9BJ58xTkcpPZh3MwSPGFl/WBBQtv+JgPYuIrPkXOXzsdFJz/TTZr/fRfZO9ZfmGhg==
   dependencies:
     "@omni-door/utils" "~1.2.7"
     "@types/express" "4.17.8"
@@ -2079,10 +2079,10 @@
     mkcert "1.3.0"
     shelljs "0.8.3"
 
-"@omni-door/gulp-plugin-vue-sfc@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.npmjs.org/@omni-door/gulp-plugin-vue-sfc/-/gulp-plugin-vue-sfc-0.0.8.tgz#e168570b8f9c9fe14420ba4d9bcf40e016aedaa3"
-  integrity sha512-1Kpvut2UlbtJtZDD08J0NtCB4EwVHcTjFzNT4/fj3fcUgPyxXgvCc/hVsNr6i6ybTZMGr0Pmz9tWQuSR5RkGBA==
+"@omni-door/gulp-plugin-vue-sfc@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@omni-door/gulp-plugin-vue-sfc/-/gulp-plugin-vue-sfc-0.1.0.tgz#68d3d0acfe03be947616e96d0f319aa659601749"
+  integrity sha512-tprRrAMD9iE1lR10s/iK6IlEmZtmBu+ZAFFAm4jNc4ZcW8qVRuPnAVPhZzi4MA1Zzdyj2YRO90aF8PZ9bjEY5g==
   dependencies:
     "@vue/component-compiler" "~4.2.4"
     plugin-error "~1.0.1"

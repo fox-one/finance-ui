@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const configuration = require('./gulpfile');
 
 module.exports = {
   type: 'component-vue', // 项目类型，请勿任意变动 (project type, please don't modify)
@@ -32,6 +33,8 @@ module.exports = {
         path.resolve(__dirname, 'src/assets')
       ] // 构建结果保留其他资源的路径 (reserve other asset paths)
     },
+
+    configuration,
 
     preflight: {
       typescript: true, // 构建时是否处理ts或tsx文件 (whether or not process the ts or tsx files)
