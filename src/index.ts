@@ -16,7 +16,7 @@ function install(Vue: VueConstructor<Vue>) {
   Vue.component('CheckOut', CheckOut);
   Vue.component(ConnectWallet.name, ConnectWallet);
   Vue.component(RiskInfo.name, RiskInfo);
-  Vue.component('RiskSlider', RiskSlider);
+  Vue.component(RiskSlider.name, RiskSlider);
 }
 
 let GlobalVue;
