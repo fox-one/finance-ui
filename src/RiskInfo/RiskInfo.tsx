@@ -189,6 +189,7 @@ export default defineComponent({
         contentClass={this.classes(void 0, this.className)}
         scopedSlots={scopedSlots}
         vModel={this.isShow}
+        overlayOpacity={0.9}
         vOn:input={this.handleInput}
       >
         <VCard class={this.classes('card')}>
@@ -268,7 +269,7 @@ export default defineComponent({
                 </div>
                 : <div class='d-flex flex-column align-center justify-center'>
                   <FButton
-                    class={this.classes('action-continue-btn-cancel', 'f-greyscale-6')}
+                    class={this.classes('action-continue-btn-cancel', 'white')}
                     color={this.customContinueColor?.btn_cancel || 'pink'}
                     vOn:click={() => this.handleContinueClick('cancel:continue')}
                   >

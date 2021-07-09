@@ -1,6 +1,7 @@
 @import '../../styles/variable.scss';
 
 .#{$prefix}-risk-slider {
+  width: 100%;
   &-tips {
     margin-top: 6px;
     &-highlight {
