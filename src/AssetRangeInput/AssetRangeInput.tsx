@@ -274,7 +274,7 @@ export default defineComponent({
               ? <div class={this.classes('top-error', 'f-caption pt-2')}>
                 { typeof this.error === 'function' ? this.error(this._value_input) : this.error }
               </div>
-              : <div class={this.classes('top-error-placeholder')} />
+              : (this.showSlider || this.showBtn) ? <div class={this.classes('top-error-placeholder')} /> : null
           }
         </div>
 

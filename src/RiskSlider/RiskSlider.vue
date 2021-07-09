@@ -2,7 +2,7 @@
   <div :class="classes()">
     <vue-slider
       v-model="_value"
-      :height="8"
+      :height="12"
       :min="0"
       :max="100"
       :interval="0.01"
