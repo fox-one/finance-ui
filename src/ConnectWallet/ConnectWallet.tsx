@@ -9,13 +9,17 @@ import type { CreateElement, VNode } from 'vue';
 export default defineComponent({
   name: 'ConnectWallet',
   props: {
+    prefixCls: {
+      type: String,
+      default: 'connect-wallet'
+    },
     text: {
       type: [String, Object],
       default: 'Connect Wallet'
     }
   },
-  setup() {
-    const classes = classnames('connect-wallet');
+  setup(props) {
+    const classes = classnames(props.prefixCls);
     onMounted(() => {
       console.info('ConnectWallet mounted!');
     });

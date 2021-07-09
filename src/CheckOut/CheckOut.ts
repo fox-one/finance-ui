@@ -47,6 +47,7 @@ export class CheckOut extends Vue {
   // UI relative
   @Prop({ type: String, default: '' }) private title!: string;
   @Prop({ type: String, default: '' }) private subtitle!: string;
+  @Prop({ type: String, default: 'checkout' }) private prefixCls!: string;
 
   @Model('change', { type: Boolean, default: false }) private show!: boolean;
 
@@ -67,7 +68,7 @@ export class CheckOut extends Vue {
   }
 
   public render(h: CreateElement): VNode {
-    const classes = classnames('checkout');
+    const classes = classnames(this.prefixCls);
     return h(
       'div',
       {

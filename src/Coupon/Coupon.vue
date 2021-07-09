@@ -23,13 +23,17 @@ export interface Coupon {
 export default defineComponent({
   name: 'Coupon',
   props: {
+    prefixCls: {
+      type: String,
+      default: 'coupon'
+    },
     coupons: {
       type: Array,
       default: () => []
     }
   },
-  setup() {
-    const classes = classnames('coupon');
+  setup(props) {
+    const classes = classnames(props.prefixCls);
     onMounted(() => {
       console.info('Coupon mounted!');
     });

@@ -53,6 +53,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    prefixCls: {
+      type: String,
+      default: 'risk-info'
+    },
     impact: {
       type: String,
       default: '?%'
@@ -79,7 +83,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const classes = classnames('risk-info');
+    const classes = classnames(props.prefixCls);
     const isContinue = false;
     const isShow = false;
     const timer = null as null | ReturnType<typeof setTimeout>;

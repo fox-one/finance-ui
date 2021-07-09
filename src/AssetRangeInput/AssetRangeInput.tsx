@@ -38,6 +38,10 @@ export default defineComponent({
       type: [String, Number],
       default: ''
     },
+    prefixCls: {
+      type: String,
+      default: 'asset-range-input'
+    },
     min: {
       type: Number,
       default: 0
@@ -109,7 +113,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const classes = classnames('asset-range-input');
+    const classes = classnames(props.prefixCls);
 
     onMounted(() => {
       console.info('AssetRangeInput mounted!');

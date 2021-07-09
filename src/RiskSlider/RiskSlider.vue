@@ -58,6 +58,10 @@ export default defineComponent({
       type: [String, Number],
       default: ''
     },
+    prefixCls: {
+      type: String,
+      default: 'risk-slider'
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -75,8 +79,8 @@ export default defineComponent({
       default: () => ({})
     },
   },
-  setup() {
-    const classes = classnames('risk-slider');
+  setup(props) {
+    const classes = classnames(props.prefixCls);
     const colors = {
         dark: {
           low: '#56D471',
