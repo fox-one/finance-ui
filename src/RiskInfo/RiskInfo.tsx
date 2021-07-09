@@ -137,7 +137,10 @@ export default defineComponent({
   },
   methods: {
     onCountDown() {
-      if (this.count === void 0) this.count = this.countdown;
+      if (this.count === void 0) {
+        this.count = this.countdown;
+        this.$emit('countdown:init', this.count);
+      }
       if (this.count <= 0) {
         this.timer = null;
         return;
@@ -145,6 +148,7 @@ export default defineComponent({
       this.timer = setTimeout(() => {
         if (this.count === void 0) return;
         this.count--;
+        this.$emit('countdown:update', this.count);
         this.$nextTick(() => this.$forceUpdate());
         this.onCountDown();
       }, 1000);
