@@ -53,10 +53,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    className: {
-      type: String,
-      default: ''
-    },
     impact: {
       type: String,
       default: '?%'
@@ -186,7 +182,7 @@ export default defineComponent({
 
     return (
       <VDialog
-        contentClass={this.classes(void 0, this.className)}
+        contentClass={this.classes()}
         scopedSlots={scopedSlots}
         vModel={this.isShow}
         overlayOpacity={0.9}

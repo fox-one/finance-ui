@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes(void 0, className)">
+  <div :class="classes()">
     <slot name="default" />
   </div>
 </template>
@@ -23,10 +23,6 @@ export interface Coupon {
 export default defineComponent({
   name: 'Coupon',
   props: {
-    className: {
-      type: String,
-      default: ''
-    },
     coupons: {
       type: Array,
       default: () => []

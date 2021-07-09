@@ -38,10 +38,6 @@ export default defineComponent({
       type: [String, Number],
       default: ''
     },
-    className: {
-      type: String,
-      default: ''
-    },
     min: {
       type: Number,
       default: 0
@@ -192,7 +188,7 @@ export default defineComponent({
 
     return (
       <VLayout
-        class={this.classes(void 0, this.className)}
+        class={this.classes()}
         attrs={{
           column: true,
           'align-center': true

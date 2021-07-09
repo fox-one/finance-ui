@@ -47,7 +47,6 @@ export class CheckOut extends Vue {
   // UI relative
   @Prop({ type: String, default: '' }) private title!: string;
   @Prop({ type: String, default: '' }) private subtitle!: string;
-  @Prop({ type: String, default: '' }) private className!: string;
 
   @Model('change', { type: Boolean, default: false }) private show!: boolean;
 
@@ -72,8 +71,7 @@ export class CheckOut extends Vue {
     return h(
       'div',
       {
-        staticClass: classes(),
-        class: this.className
+        staticClass: classes()
       },
       [
         h(

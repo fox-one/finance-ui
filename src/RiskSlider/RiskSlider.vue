@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes(void 0, className)">
+  <div :class="classes()">
     <vue-slider
       v-model="_value"
       :height="8"
@@ -54,10 +54,6 @@ export default defineComponent({
     event: 'change'
   },
   props: {
-    className: {
-      type: String,
-      default: ''
-    },
     value: {
       type: [String, Number],
       default: ''

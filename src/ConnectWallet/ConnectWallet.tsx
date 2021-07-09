@@ -9,10 +9,6 @@ import type { CreateElement, VNode } from 'vue';
 export default defineComponent({
   name: 'ConnectWallet',
   props: {
-    className: {
-      type: String,
-      default: ''
-    },
     text: {
       type: [String, Object],
       default: 'Connect Wallet'
@@ -28,7 +24,7 @@ export default defineComponent({
   },
   render(h: CreateElement): VNode {
     return (
-      <div class={this.classes(void 0, this.className)}>
+      <div class={this.classes()}>
         <span class={this.classes('text', 'f-greyscale-1 f-caption font-weight-bold pr-4')}>
           { this.text }
         </span>
