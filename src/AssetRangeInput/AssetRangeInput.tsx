@@ -216,6 +216,10 @@ export default defineComponent({
             listeners={{
               ...this.$listeners
             }}
+            attrs={{
+              ...this.$attrs,
+              disabled: this.disabledInput
+            }}
             scopedSlots={scopedSlots}
           />
           {
