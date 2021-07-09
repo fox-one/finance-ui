@@ -8,7 +8,6 @@
       :interval="0.01"
       :lazy="true"
       tooltip="none"
-      :contained="true"
       :disabled="disabled"
       :rail-style="{
         'background': `linear-gradient(to right, ${color().low} 0% ${getScaleRatio('low') * 100}%, ${color().mid} ${getScaleRatio('low') * 100}% ${(getScaleRatio('low') + getScaleRatio('mid')) * 100}%, ${color().high} ${(getScaleRatio('low') + getScaleRatio('mid')) * 100}% 100%)`
