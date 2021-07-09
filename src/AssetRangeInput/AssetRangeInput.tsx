@@ -30,7 +30,7 @@ export default defineComponent({
 
   model: {
     prop: 'value',
-    event: 'change'
+    event: 'input'
   },
 
   props: {
