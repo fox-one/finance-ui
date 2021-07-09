@@ -280,7 +280,7 @@ export default defineComponent({
 
         {
           this.showSlider
-            ? slider ?? <div class={this.classes('mid', 'mb-8')}>
+            ? <div class={this.classes('mid', 'mb-8')}>
                 {
                   sliderTips ?? <VLayout
                     class={this.classes('mid-tips', 'mb-5 f-greyscale-3 f-body-2')}
@@ -293,30 +293,32 @@ export default defineComponent({
                     <span class='f-greyscale-1 font-weight-bold'>{ `${this._value_slider ?? 0}%` }</span>
                   </VLayout>
                 }
-                <VueSlider
-                  vModel={this._value_slider}
-                  height={8}
-                  min={0}
-                  max={100}
-                  interval={0.01}
-                  lazy={true}
-                  tooltip='none'
-                  contained={true}
-                  disabled={this.disabledSlider}
-                  vOn:change={
-                    val => {
-                      this._value_slider = +val;
-                      if (this.hasUpperLimit) {
-                        this._value_input = format({
-                          n: +val / 100 * this.max,
-                          p: 8
-                        });
-                        this.$emit('input', this._value_input);
+                {
+                  slider ?? <VueSlider
+                    vModel={this._value_slider}
+                    height={8}
+                    min={0}
+                    max={100}
+                    interval={0.01}
+                    lazy={true}
+                    tooltip='none'
+                    contained={true}
+                    disabled={this.disabledSlider}
+                    vOn:change={
+                      val => {
+                        this._value_slider = +val;
+                        if (this.hasUpperLimit) {
+                          this._value_input = format({
+                            n: +val / 100 * this.max,
+                            p: 8
+                          });
+                          this.$emit('input', this._value_input);
+                        }
+                        this.$nextTick(() => this.$forceUpdate());
                       }
-                      this.$nextTick(() => this.$forceUpdate());
                     }
-                  }
-                />
+                  />
+                }
               </div>
             : null
         }
