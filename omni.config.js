@@ -98,7 +98,7 @@ module.exports = {
         if (!fs.existsSync(filePath))
           return Promise.resolve();
         return new Promise(resolve => {
-          const tag = options.tag;
+          const tag = options.tag === 'rc' ? 'latest' : options.tag;
           fs.readFile(filePath, function (
             err,
             data

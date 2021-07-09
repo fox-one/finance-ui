@@ -206,15 +206,15 @@ export default defineComponent({
             selectable={this.selectable}
             border={this.border}
             loading={this.loading}
-            vOn={{
-              ...this.$listeners,
-              input: (val, e) => {
-                if (!this.isInRange(+val)) this.$emit('error:limit');
-                this._value_input = val;
-                this.$emit('input', val);
-                if (!this.value) this.$nextTick(() => this.$forceUpdate());
-                this.setSliderValueWithLimit(+val);
-              }
+            vOn:input={(val, e) => {
+              if (!this.isInRange(+val)) this.$emit('error:limit');
+              this._value_input = val;
+              this.$emit('input', val);
+              if (!this.value) this.$nextTick(() => this.$forceUpdate());
+              this.setSliderValueWithLimit(+val);
+            }}
+            listeners={{
+              ...this.$listeners
             }}
             scopedSlots={scopedSlots}
           />
