@@ -273,7 +273,7 @@ export default defineComponent({
                 </div>
                 : <div class='d-flex flex-column align-center justify-center'>
                   <FButton
-                    class={this.classes('action-continue-btn-cancel', 'white')}
+                    class={this.classes('action-continue-btn-cancel', this.customContinueColor?.btn_cancel ? 'f-greyscale-6' : 'white')}
                     color={this.customContinueColor?.btn_cancel || 'pink'}
                     vOn:click={() => this.handleContinueClick('cancel:continue')}
                   >
