@@ -242,18 +242,25 @@ export default defineComponent({
                     }
                     {
                       this.inputTips?.amount
-                        ? <span
-                          class={this.classes('top-tips-left-amount', 'f-greyscale-1 font-weight-bold')}
-                          vOn:click={() => {
-                            if (!this.isInRange(+this.inputTips?.amount!)) this.$emit('error:limit');
-                            this._value_input = `${this.inputTips?.amount!}`;
-                            this.setSliderValueWithLimit(+this._value_input);
-                            this.$emit('input', this._value_input);
-                            this.$emit('click:amount');
-                            this.$nextTick(() => this.$forceUpdate());
-                          }}
-                        >
-                          { `${this.inputTips?.amount}${this.inputTips?.amountSymbol ?? ''}` }
+                        ? <span>
+                          <span
+                            class={this.classes('top-tips-left-amount', 'f-greyscale-1 font-weight-bold')}
+                            vOn:click={() => {
+                              if (!this.isInRange(+this.inputTips?.amount!)) this.$emit('error:limit');
+                              this._value_input = `${this.inputTips?.amount!}`;
+                              this.setSliderValueWithLimit(+this._value_input);
+                              this.$emit('input', this._value_input);
+                              this.$emit('click:amount');
+                              this.$nextTick(() => this.$forceUpdate());
+                            }}
+                          >
+                            { `${this.inputTips?.amount}` }
+                          </span>
+                          <span 
+                            class={this.classes('top-tips-left-symbol', 'f-greyscale-3')}
+                          >
+                            { `${this.inputTips?.amountSymbol ?? '' }` }
+                          </span>
                         </span>
                         : null
                     }
