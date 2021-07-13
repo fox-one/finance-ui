@@ -9,6 +9,8 @@ English | [简体中文](./README.zh-CN.md)
 
 ```shell
 yarn add @foxone/finance-ui
+# or
+npm i -S @foxone/finance-ui
 ```
 
 ### Global Usage

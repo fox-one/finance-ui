@@ -10,6 +10,8 @@
 
 ```shell
 yarn add @foxone/finance-ui
+# 或者
+npm i -S @foxone/finance-ui
 ```
 
 ### 全局使用
