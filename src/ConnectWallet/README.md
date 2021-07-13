@@ -1,4 +1,12 @@
 # ConnectWallet
+## API
+
+### Props
+| Name | Description | Type | Default |
+| --- | --- | --- | --- |
+| prefixCls(optional) | The prefix classname for wholly control the component style | string | `'connect-wallet'` |
+| text(optional) | The custom text for i18n | string \| VNode | `'Connect Wallet'` |
+
 
 ## Example
 

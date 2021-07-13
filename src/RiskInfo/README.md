@@ -1,4 +1,61 @@
-# FRiskInfo
+# RiskInfo
+
+## API
+
+### Props
+| Name | Description | Type | Default |
+| --- | --- | --- | --- |
+| value(optional) | Controls whether the component is visible or hidden | boolean | `false` |
+| prefixCls(optional) | The prefix classname for wholly control the component style | string | `'risk-info'` |
+| impact(optional) | The percent impact for UI display | string | `?%` |
+| assetLeft(optional) | The component left asset data which above the cancel button | type ASSET | `{}` |
+| assetRight(optional) | The component right asset data which above the cancel button | type ASSET | `{}` |
+| countdown(optional) | The total countdown for continue button available | number | `0` |
+| customText(optional) | The custom text for i18n | type CUSTOM_TEXT | `{ continue: {}, confirm: {} }` |
+| customColor(optional) | The custom color theme | type CUSTOM_COLOR | `{ continue: {}, confirm: {} }` |
+
+### Slots
+| Name | Description |
+| --- | --- |
+| activator(optional) | Activate the component when clicked  `{ on: { [eventName]: eventHandler }, value: boolean }` |
+
+
+## Types
+
+```typescript
+interface ASSET {
+  symbol: string;
+  amount: string;
+  name?: string;
+  price?: string;
+}
+
+interface CUSTOM_TEXT {
+  continue?: {
+    title?: string;
+    highlights?: string[];
+    btn_cancel?: string;
+    btn_continue?: string;
+  };
+  confirm?: {
+    title?: string;
+    content?: string;
+    btn_cancel?: string;
+    btn_confirm?: string;
+  };
+}
+
+interface CUSTOM_COLOR {
+  continue?: {
+    btn_cancel?: string;
+    btn_continue?: string;
+  };
+  confirm?: {
+    btn_cancel?: string;
+    btn_confirm?: string;
+  };
+}
+```
 
 ## Example
 

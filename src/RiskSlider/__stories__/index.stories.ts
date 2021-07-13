@@ -29,4 +29,13 @@ storiesOf('RiskSlider', module)
       }
     }),
     template: `<risk-slider v-model="percent" :tips="tips" />`
+  }))
+  .add('Without Tips', () => ({
+    components: {
+      RiskSlider
+    },
+    data: () => ({
+      percent: 42.5,
+    }),
+    template: `<risk-slider v-model="percent" />`
   }));

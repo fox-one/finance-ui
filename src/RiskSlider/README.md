@@ -1,5 +1,30 @@
 # RiskSlider
+## API
 
+### Props
+| Name | Description | Type | Default |
+| --- | --- | --- | --- |
+| value(optional) | The slider’s value | string | `''` |
+| prefixCls(optional) | The prefix classname for wholly control the component style | string | `'risk-slider'` |
+| disabled(optional) | Disable the slider | boolean | `false` |
+| scale(optional) | The color distribution scale | type SCALE | `{ low: 0.7, mid: 0.15, high: 0.15 }` |
+| tips(optional) | The tips below the slider | type TIPS | `{}` |
+
+
+## Types
+
+```typescript
+type SCALE = {
+  low: number;
+  mid: number;
+  high: number;
+};
+
+type TIPS = {
+  tip?: string;
+  highlight?: string;
+}
+```
 ## Example
 
 ```vue
