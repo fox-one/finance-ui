@@ -242,22 +242,25 @@ export default defineComponent({
                     }
                     {
                       this.inputTips?.amount
-                        ? <span>
+                        ? <span
+                          class={this.classes('top-tips-left-amount')}
+                          vOn:click={() => {
+                            if (!this.isInRange(+this.inputTips?.amount!)) this.$emit('error:limit');
+                            this._value_input = `${this.inputTips?.amount!}`;
+                            this.setSliderValueWithLimit(+this._value_input);
+                            this.$emit('input', this._value_input);
+                            this.$emit('click:amount');
+                            this.$nextTick(() => this.$forceUpdate());
+                          }}
+                        >
                           <span
-                            class={this.classes('top-tips-left-amount', 'f-greyscale-1 font-weight-bold')}
-                            vOn:click={() => {
-                              if (!this.isInRange(+this.inputTips?.amount!)) this.$emit('error:limit');
-                              this._value_input = `${this.inputTips?.amount!}`;
-                              this.setSliderValueWithLimit(+this._value_input);
-                              this.$emit('input', this._value_input);
-                              this.$emit('click:amount');
-                              this.$nextTick(() => this.$forceUpdate());
-                            }}
+                            class={this.classes('top-tips-left-amount-num', 'f-greyscale-1 font-weight-bold')}
+
                           >
                             { `${this.inputTips?.amount}` }
                           </span>
                           <span 
-                            class={this.classes('top-tips-left-symbol', 'f-greyscale-3')}
+                            class={this.classes('top-tips-left-amount-symbol', 'f-greyscale-3')}
                           >
                             { `${this.inputTips?.amountSymbol ?? '' }` }
                           </span>
@@ -333,7 +336,7 @@ export default defineComponent({
         {
           this.showBtn
             ? btn ?? <FButton
-              class='px-8 py-4'
+              class='px-8 py-4 f-bg-greyscale-1 f-greyscale-6'
               color={this.color}
               attrs={{
                 disabled: this.disabledBtn !== void 0 ? this.disabledBtn : !this.isInRange(+this._value_input)
