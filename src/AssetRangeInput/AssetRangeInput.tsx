@@ -245,7 +245,7 @@ export default defineComponent({
                         : null
                     }
                     {
-                      this.inputTips?.amount
+                      (this.inputTips?.amount || this.inputTips?.amount === 0)
                         ? <span
                           class={this.classes('top-tips-left-amount')}
                           vOn:click={() => {
