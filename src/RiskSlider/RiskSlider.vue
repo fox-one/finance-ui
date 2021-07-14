@@ -16,7 +16,7 @@
     <slot name="default">
       <div :class="classes('tips', 'f-greyscale-3 f-caption')">
         <span>{{ tips.tip }}</span>
-        <span :class="classes('tips-highlight', 'font-weight-bold')" :style="{ color: color[currentScale] }">{{ tips.highlight }}</span>
+        <span :class="classes('tips-highlight', 'font-weight-bold')" :style="{ color: color()[currentScale] }">{{ tips.highlight }}</span>
       </div>
     </slot>
   </div>
