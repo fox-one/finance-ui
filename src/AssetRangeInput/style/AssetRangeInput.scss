@@ -60,6 +60,14 @@
       background-color: #000;
     }
   }
+
+  .#{$prefix}-risk-slider {
+    .vue-slider-rail {
+      .vue-slider-dot-handle {
+        border-color: #fff;
+      }
+    }
+  }
 }
 
 .theme--dark {
