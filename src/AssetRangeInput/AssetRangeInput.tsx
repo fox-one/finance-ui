@@ -102,6 +102,10 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
+    showSliderTips: {
+      type: Boolean,
+      default: true
+    },
     btnText: {
       type: String,
       default: 'Confirm'
@@ -292,7 +296,7 @@ export default defineComponent({
           this.showSlider
             ? <div class={this.classes('mid', 'mb-8')}>
                 {
-                  sliderTips ?? <VLayout
+                  this.showSliderTips ? (sliderTips ?? <VLayout
                     class={this.classes('mid-tips', 'mb-5 f-greyscale-3 f-body-2')}
                     attrs={{
                       'justify-space-between': true,
@@ -301,7 +305,7 @@ export default defineComponent({
                   >
                     <span>{ this.ratioText }</span>
                     <span class='f-greyscale-1 font-weight-bold'>{ `${this._value_slider ?? 0}%` }</span>
-                  </VLayout>
+                  </VLayout>) : null
                 }
                 {
                   slider ?? <VueSlider

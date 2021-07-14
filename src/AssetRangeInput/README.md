@@ -23,6 +23,7 @@ Based On **[@foxone/uikit - AssetAmountInput](https://fox-one.github.io/uikit/#/
 | error(optional) | The error message which below the inputTips | type ERROR | `''` |
 | ratioText(optional) | The custom text for slider ratio which above the slider | string | `Ratio` |
 | showSlider(optional) | Whether show the slider | boolean | `true` |
+| showSliderTips(optional) | Whether show the slider tips | boolean | `true` |
 | btnText(optional) | The custom text for button | string | `Confirm` |
 | showBtn(optional) | Whether show the button | boolean | `true` |
 

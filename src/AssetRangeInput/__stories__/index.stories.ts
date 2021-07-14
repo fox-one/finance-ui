@@ -259,6 +259,54 @@ storiesOf('AssetRangeInput', module)
       </template>
     </asset-range-input>`
   }))
+  .add('Without InputTips', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        amount: 36,
+        amountSymbol: 'CNB',
+        tipLeft: 'Collateral',
+        tipRight: '≈ $ 1442.54',
+      },
+      amount: 16.21
+    }),
+    template: `<asset-range-input
+      v-model="amount"
+      :asset="asset"
+      :selectable="false"
+      :max="max"
+      color="black"
+    />`
+  }))
+  .add('Without SliderTips', () => ({
+    components: {
+      AssetRangeInput
+    },
+    data: () => ({
+      max: 50,
+      asset,
+      inputTips: {
+        amount: 36,
+        amountSymbol: 'CNB',
+        tipLeft: 'Collateral',
+        tipRight: '≈ $ 1442.54',
+      },
+      amount: 16.21
+    }),
+    template: `<asset-range-input
+      v-model="amount"
+      :show-slider-tips="false"
+      :inputTips="inputTips"
+      :asset="asset"
+      :selectable="false"
+      :max="max"
+      color="black"
+    />`
+  }))
   .add('Without Slider', () => ({
     components: {
       AssetRangeInput
