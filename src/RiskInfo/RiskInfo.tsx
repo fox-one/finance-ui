@@ -88,10 +88,6 @@ export default defineComponent({
     const isShow = false;
     const timer = null as null | ReturnType<typeof setTimeout>;
     const count = void 0 as undefined | number;
-    const customContinueText = props.customText.continue ?? {};
-    const customConfirmText = props.customText.confirm ?? {};
-    const customContinueColor = props.customColor.continue ?? {};
-    const customConfirmColor = props.customColor.confirm ?? {};
 
     onMounted(() => {
       console.info('RiskInfo mounted!');
@@ -102,11 +98,7 @@ export default defineComponent({
       isContinue,
       isShow,
       timer,
-      count,
-      customContinueText,
-      customConfirmText,
-      customContinueColor,
-      customConfirmColor
+      count
     };
   },
   computed: {
@@ -187,6 +179,10 @@ export default defineComponent({
     const scopedSlots = {
       activator: this.$scopedSlots.activator
     };
+    const customContinueText = this.customText.continue ?? {};
+    const customConfirmText = this.customText.confirm ?? {};
+    const customContinueColor = this.customColor.continue ?? {};
+    const customConfirmColor = this.customColor.confirm ?? {};
 
     return (
       <VDialog
@@ -200,8 +196,8 @@ export default defineComponent({
           <VCardTitle class={this.classes('card-title', 'justify-center')}>
             <div class={this.classes('title', 'f-greyscale-1 f-title-1')}>
               {this.isContinue
-                ? this.customConfirmText.title || 'Warning'
-                : this.customContinueText.title || 'Confirm transaction'
+                ? customConfirmText.title || 'Warning'
+                : customContinueText.title || 'Confirm transaction'
               }
             </div>
           </VCardTitle>
@@ -210,19 +206,19 @@ export default defineComponent({
               this.isContinue
                 ? <div class='d-flex justify-center'>
                   <div class='text-center f-body-1'>
-                    { this.customConfirmText.content || 'Once the transaction is executed, it is irrevocable, please pay after confirmation carefully.' }
+                    { customConfirmText.content || 'Once the transaction is executed, it is irrevocable, please pay after confirmation carefully.' }
                   </div>
                 </div>
                 : <div class='d-flex flex-column align-center'>
                   <div class={this.classes('highlight', 'pa-4')}>
                     <h3 class={this.classes('highlight-text', 'f-title-3')}>
-                      { this.customContinueText.highlights?.[0] ?? 'Price impact reached' }
+                      { customContinueText.highlights?.[0] ?? 'Price impact reached' }
                     </h3>
                     <h3 class={this.classes('highlight-impact')}>
                       { this.impact || '%' }
                     </h3>
                     <h4 class={this.classes('highlight-text', 'f-title-3')}>
-                      { this.customContinueText.highlights?.[1] ?? 'It may cause a serious result.' }
+                      { customContinueText.highlights?.[1] ?? 'It may cause a serious result.' }
                     </h4>
                   </div>
                   {
@@ -257,36 +253,36 @@ export default defineComponent({
                   <FButton
                     class={this.classes('action-confirm-btn-cancel', 'pt-6 pb-8')}
                     type='text'
-                    color={this.customConfirmColor?.btn_cancel || 'f-greyscale-6'}
+                    color={customConfirmColor?.btn_cancel || 'f-greyscale-6'}
                     vOn:click={() => this.handleConfirmClick('cancel:confirm')}
                   >
-                    { this.customConfirmText?.btn_cancel || 'Cancel' }
+                    { customConfirmText?.btn_cancel || 'Cancel' }
                   </FButton>
                   <FButton
                     class={this.classes('action-confirm-btn-confirm', 'pt-6 pb-8')}
                     type='text'
-                    color={this.customConfirmColor?.btn_confirm || 'error'}
+                    color={customConfirmColor?.btn_confirm || 'error'}
                     vOn:click={() => this.handleConfirmClick('confirm')}
                   >
-                    { this.customConfirmText?.btn_confirm || 'Confirm' }
+                    { customConfirmText?.btn_confirm || 'Confirm' }
                   </FButton>
                 </div>
                 : <div class='d-flex flex-column align-center justify-center'>
                   <FButton
-                    class={this.classes('action-continue-btn-cancel', this.customContinueColor?.btn_cancel ? 'f-greyscale-6' : 'white--text')}
-                    color={this.customContinueColor?.btn_cancel || 'pink'}
+                    class={this.classes('action-continue-btn-cancel', customContinueColor?.btn_cancel ? 'f-greyscale-6' : 'white--text')}
+                    color={customContinueColor?.btn_cancel || 'pink'}
                     vOn:click={() => this.handleContinueClick('cancel:continue')}
                   >
-                    { this.customContinueText?.btn_cancel || 'Cancel' }
+                    { customContinueText?.btn_cancel || 'Cancel' }
                   </FButton>
                   <FButton
                     class={this.classes('action-continue-btn-continue', 'py-8')}
                     attrs={{ disabled: this.count !== void 0 && this.count > 0 }}
                     type='text'
-                    color={this.customContinueColor?.btn_continue || 'f-greyscale-1'}
+                    color={customContinueColor?.btn_continue || 'f-greyscale-1'}
                     vOn:click={() => this.handleContinueClick('continue')}
                   >
-                    { `${this.customContinueText?.btn_continue || 'Continue'}${this.count !== void 0 && this.count > 0 ? `(${this.count}s)` : ''}`.trim() }
+                    { `${customContinueText?.btn_continue || 'Continue'}${this.count !== void 0 && this.count > 0 ? `(${this.count}s)` : ''}`.trim() }
                   </FButton>
                 </div>
             }
