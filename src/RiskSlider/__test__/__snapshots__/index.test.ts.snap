@@ -2,8 +2,31 @@
 
 exports[`RiskSlider renders correctly 1`] = `
 VueWrapper {
-  "_emitted": Object {},
-  "_emittedByOrder": Array [],
+  "_emitted": Object {
+    "hook:beforeMount": Array [
+      Array [],
+    ],
+    "hook:created": Array [
+      Array [],
+    ],
+    "hook:mounted": Array [
+      Array [],
+    ],
+  },
+  "_emittedByOrder": Array [
+    Object {
+      "args": Array [],
+      "name": "hook:created",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:beforeMount",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:mounted",
+    },
+  ],
   "isFunctionalComponent": undefined,
 }
 `;

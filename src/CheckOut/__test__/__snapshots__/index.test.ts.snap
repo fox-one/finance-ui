@@ -2,8 +2,17 @@
 
 exports[`CheckOut renders correctly 1`] = `
 VueWrapper {
-  "_emitted": Object {},
-  "_emittedByOrder": Array [],
+  "_emitted": Object {
+    "hook:mounted": Array [
+      Array [],
+    ],
+  },
+  "_emittedByOrder": Array [
+    Object {
+      "args": Array [],
+      "name": "hook:mounted",
+    },
+  ],
   "isFunctionalComponent": undefined,
 }
 `;
