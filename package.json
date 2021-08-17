@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@vue/composition-api": "^1.0.0-rc.13",
+    "@vue/composition-api": "~1.1.1",
     "classnames": "~2.2.6",
     "vue-slider-component": "~3.2.13"
   },
